@@ -7,25 +7,25 @@
 /* ── Design Tokens ── */
 :root {
   /* ── Backgrounds ── */
-  --color-bg:          #FCFBF8; /* Creamy off-white */
-  --color-surface:     #FFFDF9;
-  --color-surface-2:   #F5F3E9;
-  --color-overlay:     rgba(122, 27, 34, 0.85); /* Maroon overlay */
+  --color-bg:          #591118; /* Rich Dark Maroon */
+  --color-surface:     #6D161E; /* Lighter Maroon */
+  --color-surface-2:   #400C11; /* Very dark Maroon */
+  --color-overlay:     rgba(46, 9, 12, 0.85);
 
   /* ── Brand ── */
-  --color-terracotta:  #7A1B22; /* Deep Maroon */
-  --color-terracotta-h:#66161C;
-  --color-gold:        #7A1B22; 
-  --color-gold-muted:  rgba(122, 27, 34, 0.15);
+  --color-terracotta:  #F5E6CC; /* Creamy off-white as the accent */
+  --color-terracotta-h:#FFF9E6;
+  --color-gold:        #D4AF37; /* Authentic gold for elegance */
+  --color-gold-muted:  rgba(212, 175, 55, 0.15);
 
   /* ── Text ── */
-  --color-text:        #2E1B1C; /* Dark maroon-tinted text */
-  --color-text-muted:  #5C4D4E;
-  --color-text-faint:  rgba(46, 27, 28, 0.35);
+  --color-text:        #FCFBF8; /* Off-white text */
+  --color-text-muted:  #D9CBB8;
+  --color-text-faint:  rgba(252, 251, 248, 0.4);
 
-  /* ── Borders (Softer for restaurant feel) ── */
-  --color-border:      #EBE6DD;
-  --color-border-gold: #7A1B22;
+  /* ── Borders ── */
+  --color-border:      #7D1A23;
+  --color-border-gold: #D4AF37;
 
   /* ── Semantic ── */
   --color-success:     #00B85C;

@@ -102,7 +102,7 @@ export default function CTASection() {
               lineHeight: 1.65,
             }}
           >
-            Tuesdays through Sundays, 137 King Street West. Walk-ins welcome,
+            Tuesdays through Sundays, 94 Dunlop st W. Walk-ins welcome,
             but the family table books fast.
           </p>
 

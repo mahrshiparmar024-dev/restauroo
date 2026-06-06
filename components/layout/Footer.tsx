@@ -137,9 +137,9 @@ export default function Footer() {
                 lineHeight: 1.8,
               }}
             >
-              137 King Street West
+              94 Dunlop st W
               <br />
-              Barrie, ON N2G 1A7
+              Barrie, ON L4N 1A8
               <br />
               <br />
               <span

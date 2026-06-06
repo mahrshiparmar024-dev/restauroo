@@ -19,10 +19,7 @@ export default function MenuFilter({ active, onChange }: MenuFilterProps) {
   const noMotion =
     typeof window !== 'undefined' ? prefersReducedMotion() : false;
 
-  const allCategories = [
-    { key: 'all' as const, label: 'All' },
-    ...CATEGORIES,
-  ];
+  const allCategories = CATEGORIES;
 
   useEffect(() => {
     if (!containerRef.current) return;
