@@ -85,7 +85,7 @@ export default function Navbar() {
             transition: 'color var(--dur-base) var(--ease-out)',
           }}
         >
-          Anatolian
+          Saray
           <span style={{ color: 'var(--color-gold)', marginLeft: '2px' }}>.</span>
         </Link>
 

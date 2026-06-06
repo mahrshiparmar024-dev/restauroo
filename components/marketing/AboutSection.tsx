@@ -10,7 +10,7 @@ export default function AboutSection() {
     typeof window !== 'undefined' ? prefersReducedMotion() : false;
 
   return (
-    <section className="section-padding" aria-label="About Anatolian">
+    <section className="section-padding" aria-label="About Saray">
       <div
         className="site-container"
         style={{
@@ -32,7 +32,7 @@ export default function AboutSection() {
           <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', borderRadius: 'var(--radius-md)', overflow: 'hidden', border: '2px solid var(--color-border)', boxShadow: '6px 6px 0px var(--color-border)' }}>
             <Image
               src="/images/home_about_1780743750781.png"
-              alt="Interior of Anatolian restaurant"
+              alt="Interior of Saray restaurant"
               fill
               style={{ objectFit: 'cover' }}
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -75,7 +75,7 @@ export default function AboutSection() {
             }}
           >
             In 2018, the Yılmaz family left Gaziantep with a notebook full of
-            handwritten recipes and a conviction that Kitchener deserved better
+            handwritten recipes and a conviction that Barrie deserved better
             Turkish food. Grandmother Ayşe&apos;s kebab spice blend. Uncle
             Hasan&apos;s 40-layer baklava technique. Mother Fatma&apos;s mantı,
             pinched one by one.
@@ -90,7 +90,7 @@ export default function AboutSection() {
               maxWidth: '480px',
             }}
           >
-            Every dish at Anatolian is made from memory — not from a recipe
+            Every dish at Saray is made from memory — not from a recipe
             book. We don&apos;t cut corners with the dough, we don&apos;t rush
             the slow-cook, and we don&apos;t apologise for the heat.
           </p>

@@ -1,4 +1,4 @@
-# Anatolian — Authentic Turkish Kitchen 🥘
+# Saray — Authentic Turkish Kitchen 🥘
 
 A modern, high-performance web application for a Turkish restaurant, featuring a bold Brutalist aesthetic, seamless animations, and built-in social engineering techniques to drive conversions. Built with **Next.js**, **React**, and **Framer Motion**.
 

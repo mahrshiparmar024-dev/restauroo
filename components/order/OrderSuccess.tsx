@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useOrder } from '@/context/OrderContext';
 import { formatPrice, prefersReducedMotion } from '@/lib/utils';
 import AnimatedButton from '@/components/ui/AnimatedButton';
@@ -15,8 +16,19 @@ export default function OrderSuccess() {
     0
   );
 
+  const [smsStatus, setSmsStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
+
   const handleDownloadInvoice = () => {
     window.print();
+  };
+
+  const handleSendSms = () => {
+    setSmsStatus('sending');
+    // Simulate API delay
+    setTimeout(() => {
+      setSmsStatus('sent');
+      setTimeout(() => setSmsStatus('idle'), 3000);
+    }, 1200);
   };
 
   return (
@@ -356,17 +368,52 @@ export default function OrderSuccess() {
         >
           Download Invoice
         </AnimatedButton>
+        <AnimatedButton
+          variant="ghost"
+          onClick={handleSendSms}
+          disabled={smsStatus !== 'idle'}
+        >
+          {smsStatus === 'sending' ? 'Sending...' : smsStatus === 'sent' ? '✓ Sent to Phone' : 'Send via SMS'}
+        </AnimatedButton>
         <AnimatedButton variant="ghost" href="/">
           Back to Home
         </AnimatedButton>
       </div>
     </motion.div>
 
+    {/* SMS Toast */}
+    <AnimatePresence>
+      {smsStatus === 'sent' && (
+        <motion.div
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 20, scale: 0.9 }}
+          style={{
+            position: 'fixed',
+            bottom: 'var(--space-8)',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            backgroundColor: 'var(--color-success)',
+            color: '#fff',
+            padding: 'var(--space-3) var(--space-6)',
+            borderRadius: 'var(--radius-full)',
+            fontFamily: 'var(--font-body)',
+            fontSize: 'var(--text-sm)',
+            fontWeight: 500,
+            boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
+            zIndex: 9999,
+          }}
+        >
+          ✓ Bill sent successfully to your phone
+        </motion.div>
+      )}
+    </AnimatePresence>
+
     {/* Print Only Invoice */}
     <div className="print-invoice" style={{ display: 'none' }}>
       <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-        <h1 style={{ margin: '0 0 10px 0', fontSize: '24px' }}>ANATOLIAN KITCHEN</h1>
-        <p style={{ margin: '0', fontSize: '14px', color: '#666' }}>137 King Street West, Kitchener, ON N2G 1A7</p>
+        <h1 style={{ margin: '0 0 10px 0', fontSize: '24px' }}>SARAY KITCHEN</h1>
+        <p style={{ margin: '0', fontSize: '14px', color: '#666' }}>94 Dunlop st W, Barrie, ON L4N 1A8</p>
         <p style={{ margin: '0', fontSize: '14px', color: '#666' }}>(519) 555-0123</p>
       </div>
 

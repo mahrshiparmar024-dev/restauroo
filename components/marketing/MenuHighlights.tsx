@@ -47,7 +47,7 @@ export default function MenuHighlights() {
           >
             Dishes Worth the
             <br />
-            Drive to Kitchener
+            Drive to Barrie
           </h2>
           <p
             style={{

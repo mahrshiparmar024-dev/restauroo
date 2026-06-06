@@ -52,7 +52,7 @@ export default function ExperienceSection() {
     typeof window !== 'undefined' ? prefersReducedMotion() : false;
 
   return (
-    <section className="section-padding" aria-label="The Anatolian experience">
+    <section className="section-padding" aria-label="The Saray experience">
       <div className="site-container">
         <motion.div
           initial={noMotion ? false : { opacity: 0, y: 80 }}

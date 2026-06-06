@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import AnimatedButton from '@/components/ui/AnimatedButton';
 import { prefersReducedMotion } from '@/lib/utils';
 
-const HERO_WORDS = ['ANATOLIAN'];
+const HERO_WORDS = ['SARAY'];
 
 export default function HeroSection() {
   const noMotion =
@@ -13,7 +13,7 @@ export default function HeroSection() {
 
   return (
     <section
-      aria-label="Welcome to Anatolian"
+      aria-label="Welcome to Saray"
       style={{
         position: 'relative',
         minHeight: 'calc(100dvh - 72px)',
@@ -98,7 +98,7 @@ export default function HeroSection() {
               boxShadow: '4px 4px 0px var(--color-border)',
             }}
           >
-            🔥 KITCHENER, ON
+            🔥 BARRIE, ON
           </motion.span>
 
           {/* Headline — letter spacing animation */}
@@ -118,7 +118,7 @@ export default function HeroSection() {
               marginBottom: 'var(--space-6)',
             }}
           >
-            ANATOLIAN
+            SARAY
           </motion.h1>
 
           {/* Subtitle */}
@@ -211,7 +211,7 @@ export default function HeroSection() {
                 color: 'var(--color-text-muted)',
               }}
             >
-              Over <strong>5,000+</strong> happy customers in Kitchener
+              Over <strong>5,000+</strong> happy customers in Barrie
             </span>
           </motion.div>
         </div>

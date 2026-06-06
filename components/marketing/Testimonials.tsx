@@ -21,7 +21,7 @@ const TESTIMONIALS = [
     quote:
       'We booked the family table for my parents\' anniversary. Eighteen dishes, Turkish tea, and baklava for twelve. Best meal we\'ve had in years.',
     author: 'Sarah & James R.',
-    location: 'Kitchener, ON',
+    location: 'Barrie, ON',
   },
 ];
 

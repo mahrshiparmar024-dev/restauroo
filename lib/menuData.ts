@@ -1,4 +1,16 @@
-export type Category = 'mezze' | 'kebabs' | 'pide' | 'mains' | 'desserts';
+export type Category = 
+  | 'cold_appetizer' 
+  | 'hot_appetizer' 
+  | 'salad' 
+  | 'combos' 
+  | 'kebabs' 
+  | 'saute' 
+  | 'doner' 
+  | 'pide' 
+  | 'margarita' 
+  | 'fresh_juices' 
+  | 'milk_shakes' 
+  | 'desserts';
 
 export interface Dish {
   id: string;
@@ -13,328 +25,134 @@ export interface Dish {
 }
 
 export const CATEGORIES: { key: Category; label: string }[] = [
-  { key: 'mezze', label: 'Mezze' },
+  { key: 'cold_appetizer', label: 'Cold Appetizers' },
+  { key: 'hot_appetizer', label: 'Hot Appetizers' },
+  { key: 'salad', label: 'Salads' },
+  { key: 'combos', label: 'Combos' },
   { key: 'kebabs', label: 'Kebabs' },
-  { key: 'pide', label: 'Pide & Bread' },
-  { key: 'mains', label: 'Mains' },
-  { key: 'desserts', label: 'Desserts & Drinks' },
+  { key: 'saute', label: 'Sauté' },
+  { key: 'doner', label: 'Döner' },
+  { key: 'pide', label: 'Pide & Lahmacun' },
+  { key: 'margarita', label: 'Margaritas' },
+  { key: 'fresh_juices', label: 'Fresh Juices' },
+  { key: 'milk_shakes', label: 'Milk Shakes' },
+  { key: 'desserts', label: 'Desserts' },
 ];
+
+const g = 'linear-gradient(145deg, #7A1B22 0%, #a0222a 35%, #c8353e 65%, #e8555e 100%)';
 
 export const menuData: Dish[] = [
-  // ────────────────────────────────── MEZZE ──────────────────────────────────
-  {
-    id: 'hummus',
-    name: 'Hummus',
-    nameEn: 'Classic Chickpea Dip',
-    category: 'mezze',
-    description:
-      'Stone-ground chickpeas whipped with tahini, lemon, and a slow pour of Aegean olive oil. Finished with sumac and toasted pine nuts.',
-    price: 9.5,
-    isPopular: true,
-    isVegetarian: true,
-    gradientStyle:
-      'linear-gradient(145deg, #d4a843 0%, #c4913a 35%, #a0722a 65%, #7a5520 100%)',
-  },
-  {
-    id: 'muhammara',
-    name: 'Muhammara',
-    nameEn: 'Roasted Pepper & Walnut Spread',
-    category: 'mezze',
-    description:
-      'Charred red peppers pounded with walnuts, pomegranate molasses, and Aleppo pepper. A Gaziantep staple we refuse to simplify.',
-    price: 11.0,
-    isPopular: false,
-    isVegetarian: true,
-    gradientStyle:
-      'linear-gradient(135deg, #8b2500 0%, #c8401a 40%, #d4633b 70%, #e8a020 100%)',
-  },
-  {
-    id: 'sigara-boregi',
-    name: 'Sigara Böreği',
-    nameEn: 'Crispy Feta Rolls',
-    category: 'mezze',
-    description:
-      'Hand-rolled yufka pastry stuffed with aged beyaz peynir and flat-leaf parsley, fried until the edges shatter.',
-    price: 12.0,
-    isPopular: true,
-    isVegetarian: true,
-    gradientStyle:
-      'linear-gradient(160deg, #e8d5b0 0%, #c4a865 30%, #a08040 60%, #7a5a20 100%)',
-  },
-  {
-    id: 'haydari',
-    name: 'Haydari',
-    nameEn: 'Thick Herbed Yogurt Dip',
-    category: 'mezze',
-    description:
-      'Strained yogurt folded with dried mint, roasted garlic, and crumbled feta. Served cold with warm bread.',
-    price: 10.0,
-    isPopular: false,
-    isVegetarian: true,
-    gradientStyle:
-      'linear-gradient(140deg, #f5f0e8 0%, #ddd5c5 40%, #c4b89a 70%, #a09070 100%)',
-  },
-  {
-    id: 'patlican-salatasi',
-    name: 'Patlıcan Salatası',
-    nameEn: 'Smoky Eggplant Salad',
-    category: 'mezze',
-    description:
-      'Whole eggplants charred directly over flame, then mashed with tahini, garlic, lemon, and a thread of pomegranate molasses.',
-    price: 10.5,
-    isPopular: false,
-    isVegetarian: true,
-    gradientStyle:
-      'linear-gradient(155deg, #3d2a1a 0%, #6b4530 35%, #8a6040 65%, #b08050 100%)',
-  },
+  // Cold Appetizers
+  { id: 'hummus', name: 'Hummus', nameEn: 'Hummus', category: 'cold_appetizer', description: 'Creamy chickpea dip', price: 8.99, isPopular: true, isVegetarian: true, gradientStyle: g },
+  { id: 'sarma', name: 'Sarma', nameEn: 'Stuffed Grape Leaves', category: 'cold_appetizer', description: 'Vine leaves stuffed with rice and herbs', price: 9.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'baba-ghanoush', name: 'Baba Ghanoush', nameEn: 'Baba Ghanoush', category: 'cold_appetizer', description: 'Smoky roasted eggplant dip', price: 9.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'haydari', name: 'Haydari', nameEn: 'Haydari', category: 'cold_appetizer', description: 'Thick garlic yogurt with herbs', price: 8.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'eggplant', name: 'Eggplant', nameEn: 'Roasted Eggplant', category: 'cold_appetizer', description: 'Roasted eggplant mezze', price: 10.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'mix-appetizer', name: 'Mix Appetizer', nameEn: 'Mixed Appetizer (4 varieties)', category: 'cold_appetizer', description: '4 farklı karışık meze', price: 24.99, isPopular: true, isVegetarian: true, gradientStyle: g },
 
-  // ────────────────────────────────── KEBABS ──────────────────────────────────
-  {
-    id: 'adana-kebab',
-    name: 'Adana Kebab',
-    nameEn: 'Spicy Hand-Minced Lamb Kebab',
-    category: 'kebabs',
-    description:
-      'Coarse-ground lamb kneaded with tail fat, Urfa biber, and red pepper flake, pressed onto wide iron skewers and grilled over hardwood charcoal. Served with lavash and charred tomato.',
-    price: 24.0,
-    isPopular: true,
-    isVegetarian: false,
-    gradientStyle:
-      'linear-gradient(135deg, #3d1f0d 0%, #7a3520 40%, #c8401a 70%, #e8a020 100%)',
-  },
-  {
-    id: 'beyti-kebab',
-    name: 'Beyti Kebab',
-    nameEn: 'Wrapped Grilled Lamb in Lavash',
-    category: 'kebabs',
-    description:
-      'Seasoned ground lamb grilled on the skewer, then wrapped in lavash with butter and served over tomato sauce with a side of yogurt.',
-    price: 26.0,
-    isPopular: true,
-    isVegetarian: false,
-    gradientStyle:
-      'linear-gradient(140deg, #4a2010 0%, #8b3520 30%, #b84a20 60%, #d4633b 100%)',
-  },
-  {
-    id: 'sis-tavuk',
-    name: 'Şiş Tavuk',
-    nameEn: 'Charcoal-Grilled Chicken Skewers',
-    category: 'kebabs',
-    description:
-      'Free-range chicken thigh marinated overnight in yogurt, tomato paste, and a proprietary seven-spice blend. Grilled over binchotan.',
-    price: 21.0,
-    isPopular: false,
-    isVegetarian: false,
-    gradientStyle:
-      'linear-gradient(130deg, #5c3d1e 0%, #8a6535 35%, #c4913a 65%, #e8b84a 100%)',
-  },
-  {
-    id: 'kuzu-tandir',
-    name: 'Kuzu Tandır',
-    nameEn: 'Slow-Roasted Whole Lamb Shoulder',
-    category: 'kebabs',
-    description:
-      'Lamb shoulder rubbed with mountain oregano, slow-cooked for six hours in a sealed clay oven until it falls apart. Limited availability — we cook two shoulders per day.',
-    price: 32.0,
-    isPopular: true,
-    isVegetarian: false,
-    gradientStyle:
-      'linear-gradient(145deg, #2a1508 0%, #5c2d15 30%, #8b4525 60%, #c8622a 100%)',
-  },
-  {
-    id: 'kofte',
-    name: 'Köfte',
-    nameEn: 'Grilled Turkish Meatballs',
-    category: 'kebabs',
-    description:
-      'A blend of lamb and beef shaped by hand with grated onion, cumin, and fresh herbs. Charred on the outside, juicy within. Served with ezme salad.',
-    price: 19.0,
-    isPopular: false,
-    isVegetarian: false,
-    gradientStyle:
-      'linear-gradient(135deg, #3d2010 0%, #6b3a20 40%, #9a5530 70%, #c87040 100%)',
-  },
+  // Hot Appetizers
+  { id: 'kelle-paca', name: 'Kelle Paça', nameEn: 'Kelle Paca Soup', category: 'hot_appetizer', description: 'Traditional trotter soup', price: 12.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'lentil-soup', name: 'Mercimek Çorbası', nameEn: 'Lentil Soup', category: 'hot_appetizer', description: 'Warm and comforting lentil soup', price: 8.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'fried-calamari', name: 'Kalamar Tava', nameEn: 'Fried Calamari', category: 'hot_appetizer', description: 'Crispy fried calamari rings', price: 19.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'fried-shrimp', name: 'Karides Tava', nameEn: 'Fried Shrimp', category: 'hot_appetizer', description: 'Crispy fried shrimp', price: 18.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'manti', name: 'Mantı', nameEn: 'Turkish Dumplings', category: 'hot_appetizer', description: 'Mini dumplings topped with garlic yogurt', price: 22.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'icli-kofte', name: 'İçli Köfte', nameEn: 'Stuffed Meatballs', category: 'hot_appetizer', description: 'Bulgur shell stuffed with minced meat and walnuts', price: 18.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'cigar-rolls', name: 'Sigara Böreği', nameEn: 'Cigar Rolls', category: 'hot_appetizer', description: 'Crispy pastry rolls filled with cheese', price: 11.99, isPopular: true, isVegetarian: true, gradientStyle: g },
+  { id: 'fries', name: 'Patates Kızartması', nameEn: 'Fries', category: 'hot_appetizer', description: 'Crispy golden fries', price: 5.99, isPopular: false, isVegetarian: true, gradientStyle: g },
 
-  // ────────────────────────────────── PIDE & BREAD ──────────────────────────────────
-  {
-    id: 'kiymali-pide',
-    name: 'Kıymalı Pide',
-    nameEn: 'Lamb Mince Pide',
-    category: 'pide',
-    description:
-      'Boat-shaped flatbread with hand-stretched dough, filled with seasoned lamb mince, tomatoes, and green peppers, baked in a wood-fired oven until the edges char and blister.',
-    price: 18.0,
-    isPopular: true,
-    isVegetarian: false,
-    gradientStyle:
-      'linear-gradient(150deg, #c4913a 0%, #a0722a 30%, #7a4a1a 60%, #5c3210 100%)',
-  },
-  {
-    id: 'peynirli-pide',
-    name: 'Peynirli Pide',
-    nameEn: 'Three-Cheese Pide',
-    category: 'pide',
-    description:
-      'A blend of kaşar, beyaz peynir, and lor cheese melted into hand-stretched dough. Finished with butter and an optional egg cracked into the centre.',
-    price: 16.0,
-    isPopular: false,
-    isVegetarian: true,
-    gradientStyle:
-      'linear-gradient(135deg, #e8d5b0 0%, #d4b880 30%, #c4a060 60%, #a88840 100%)',
-  },
-  {
-    id: 'bazlama',
-    name: 'Bazlama',
-    nameEn: 'Griddle Bread with Butter',
-    category: 'pide',
-    description:
-      'Thick, pillowy flatbread cooked on a cast-iron sac griddle. Served warm and torn, with a generous pat of cultured butter.',
-    price: 6.0,
-    isPopular: false,
-    isVegetarian: true,
-    gradientStyle:
-      'linear-gradient(145deg, #f0e0c8 0%, #d4c4a0 40%, #b8a078 70%, #9a8060 100%)',
-  },
+  // Salads
+  { id: 'shepherds-salad', name: 'Çoban Salatası', nameEn: 'Shepherds Salad', category: 'salad', description: 'Finely chopped tomatoes, cucumbers, onions, and parsley', price: 13.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'green-salad', name: 'Yeşil Salata', nameEn: 'Green Salad', category: 'salad', description: 'Fresh mixed greens', price: 15.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'chicken-salad', name: 'Tavuklu Salata', nameEn: 'Chicken Salad', category: 'salad', description: 'Fresh salad topped with grilled chicken', price: 17.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'saray-salad', name: 'Saray Salatası', nameEn: 'Saray Salad', category: 'salad', description: 'Our signature house salad', price: 17.99, isPopular: true, isVegetarian: true, gradientStyle: g },
+  { id: 'shrimp-salad', name: 'Karides Salatası', nameEn: 'Shrimp Salad', category: 'salad', description: 'Fresh salad topped with shrimp', price: 20.99, isPopular: false, isVegetarian: false, gradientStyle: g },
 
-  // ────────────────────────────────── MAINS ──────────────────────────────────
-  {
-    id: 'iskender-kebab',
-    name: 'İskender Kebab',
-    nameEn: 'Döner Over Bread with Tomato Butter',
-    category: 'mains',
-    description:
-      'Thin-sliced döner lamb layered over torn pide bread, doused in bright tomato sauce and sizzling brown butter. A pool of yogurt on the side. Born in Bursa, perfected here.',
-    price: 27.0,
-    isPopular: true,
-    isVegetarian: false,
-    gradientStyle:
-      'linear-gradient(140deg, #4a1a08 0%, #8b3520 35%, #c8401a 60%, #e8a020 100%)',
-  },
-  {
-    id: 'kuru-fasulye',
-    name: 'Kuru Fasulye',
-    nameEn: 'Slow-Simmered White Bean Stew',
-    category: 'mains',
-    description:
-      'The comfort dish of Istanbul. Dried white beans braised for hours with tomato paste, green peppers, and a hint of sucuk. Served with pilav and pickled turnips.',
-    price: 16.0,
-    isPopular: false,
-    isVegetarian: false,
-    gradientStyle:
-      'linear-gradient(155deg, #5c3d1e 0%, #8a6535 30%, #b8884a 60%, #d4a860 100%)',
-  },
-  {
-    id: 'manti',
-    name: 'Mantı',
-    nameEn: 'Turkish Dumplings with Garlic Yogurt',
-    category: 'mains',
-    description:
-      'Tiny hand-folded dumplings filled with spiced lamb, boiled, then dressed with garlic yogurt and a drizzle of paprika-infused butter. Each one pinched by hand.',
-    price: 22.0,
-    isPopular: true,
-    isVegetarian: false,
-    gradientStyle:
-      'linear-gradient(135deg, #f0e0c8 0%, #d4b880 25%, #a08050 50%, #7a5a30 100%)',
-  },
+  // Combos
+  { id: 'combo-2', name: 'Saray Mix (2 Kişilik)', nameEn: 'Saray Mix for 2 people', category: 'combos', description: 'A grand platter of mixed kebabs for two', price: 65.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'combo-5', name: 'Saray Mix (5 Kişilik)', nameEn: 'Saray Mix for 5 people', category: 'combos', description: 'A grand feast of mixed kebabs for five', price: 130.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'combo-8', name: 'Saray Mix (8 Kişilik)', nameEn: 'Saray Mix for 8 people', category: 'combos', description: 'The ultimate royal feast of mixed kebabs for eight', price: 206.99, isPopular: false, isVegetarian: false, gradientStyle: g },
 
-  // ────────────────────────────────── DESSERTS & DRINKS ──────────────────────────────────
-  {
-    id: 'baklava',
-    name: 'Baklava',
-    nameEn: 'Pistachio Baklava',
-    category: 'desserts',
-    description:
-      'Forty layers of hand-stretched yufka, filled with Antep pistachios and soaked in a light sugar syrup scented with rose water. Takes three days from start to plate.',
-    price: 12.0,
-    isPopular: true,
-    isVegetarian: true,
-    gradientStyle:
-      'linear-gradient(160deg, #5c3d1e 0%, #a0722a 50%, #d4a843 100%)',
-  },
-  {
-    id: 'kunefe',
-    name: 'Künefe',
-    nameEn: 'Shredded Pastry with Melted Cheese',
-    category: 'desserts',
-    description:
-      'Kadayıf threads pressed around unsalted mozzarella-like dil peyniri, baked until crisp and golden, then soaked in syrup. Served immediately — this one does not wait.',
-    price: 14.0,
-    isPopular: true,
-    isVegetarian: true,
-    gradientStyle:
-      'linear-gradient(140deg, #e8a020 0%, #d4883a 30%, #b86830 60%, #8b4525 100%)',
-  },
-  {
-    id: 'sutlac',
-    name: 'Sütlaç',
-    nameEn: 'Baked Turkish Rice Pudding',
-    category: 'desserts',
-    description:
-      'Creamy oven-baked rice pudding with a caramelised top. Made with whole milk, a touch of rose water, and no shortcuts. Served cold in the clay ramekin.',
-    price: 9.0,
-    isPopular: false,
-    isVegetarian: true,
-    gradientStyle:
-      'linear-gradient(150deg, #f5f0e8 0%, #e8d5b0 35%, #d4c4a0 65%, #c4a878 100%)',
-  },
-  {
-    id: 'turkish-tea',
-    name: 'Çay',
-    nameEn: 'Turkish Tea',
-    category: 'desserts',
-    description:
-      'Double-brewed Rize black tea served in a tulip glass. Strong, tannic, and the colour of mahogany. Two sugar cubes on the side, as tradition requires.',
-    price: 3.5,
-    isPopular: true,
-    isVegetarian: true,
-    gradientStyle:
-      'linear-gradient(135deg, #6b2010 0%, #a03818 40%, #c85020 70%, #e87830 100%)',
-  },
-  {
-    id: 'turkish-coffee',
-    name: 'Türk Kahvesi',
-    nameEn: 'Turkish Coffee',
-    category: 'desserts',
-    description:
-      'Fine-ground Arabica beans slow-brewed in a copper cezve with cardamom. Served with a square of Turkish delight and a glass of water.',
-    price: 5.0,
-    isPopular: false,
-    isVegetarian: true,
-    gradientStyle:
-      'linear-gradient(145deg, #1a0f08 0%, #3d2010 35%, #5c3520 65%, #7a4a30 100%)',
-  },
-  {
-    id: 'ayran',
-    name: 'Ayran',
-    nameEn: 'Salted Yogurt Drink',
-    category: 'desserts',
-    description:
-      'Cold, frothy, and aggressively refreshing. Whole-milk yogurt churned with ice water and a pinch of sea salt. The only proper kebab companion.',
-    price: 4.0,
-    isPopular: false,
-    isVegetarian: true,
-    gradientStyle:
-      'linear-gradient(140deg, #f8f4ef 0%, #e8e0d4 30%, #d4ccc0 60%, #c0b8a8 100%)',
-  },
+  // Kebabs
+  { id: 'adana-kebab', name: 'Adana Kebap', nameEn: 'Adana Kebab', category: 'kebabs', description: 'Spicy minced meat kebab grilled on a wide skewer', price: 24.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'urfa-kebab', name: 'Urfa Kebap', nameEn: 'Urfa Kebab', category: 'kebabs', description: 'Mild minced meat kebab', price: 24.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'tomatoes-kebab', name: 'Domatesli Kebap', nameEn: 'Tomatoes Kebab', category: 'kebabs', description: 'Kebab grilled with fresh tomatoes', price: 29.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'eggplant-kebab', name: 'Patlıcan Kebap', nameEn: 'Eggplant Kebab', category: 'kebabs', description: 'Kebab roasted with eggplant slices', price: 29.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'beef-shish', name: 'Dana Şiş', nameEn: 'Beef Shish', category: 'kebabs', description: 'Tender marinated beef skewers', price: 28.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'beyti-sarma', name: 'Beyti Sarma', nameEn: 'Beyti Sarma', category: 'kebabs', description: 'Minced lamb wrapped in lavash, topped with tomato sauce and yogurt', price: 26.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'pistachio-kebab', name: 'Fıstıklı Kebap', nameEn: 'Pistachio Kebab', category: 'kebabs', description: 'Kebab enriched with pistachios', price: 28.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'chicken-adana', name: 'Tavuk Adana', nameEn: 'Chicken Adana Kebab', category: 'kebabs', description: 'Spicy minced chicken kebab', price: 22.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'chicken-shish', name: 'Tavuk Şiş', nameEn: 'Chicken Shish', category: 'kebabs', description: 'Marinated chicken skewers', price: 22.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'chicken-wings', name: 'Tavuk Kanat', nameEn: 'Chicken Wings', category: 'kebabs', description: 'Grilled marinated chicken wings', price: 22.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'lamb-chop', name: 'Kuzu Pirzola', nameEn: 'Lamb Chop', category: 'kebabs', description: 'Tender grilled lamb chops', price: 38.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+
+  // Saute
+  { id: 'ali-nazik', name: 'Ali Nazik', nameEn: 'Ali Nazik', category: 'saute', description: 'Smoky eggplant puree topped with spiced minced meat', price: 28.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'mushrooms-saute', name: 'Mantar Sote', nameEn: 'Mushrooms Sauté', category: 'saute', description: 'Sautéed mushrooms with herbs', price: 26.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'beef-saute', name: 'Et Sote', nameEn: 'Beef Sauté', category: 'saute', description: 'Tender beef sautéed with tomatoes and peppers', price: 27.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'chicken-saute', name: 'Tavuk Sote', nameEn: 'Chicken Sauté', category: 'saute', description: 'Chicken sautéed with vegetables', price: 26.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'beef-mushrooms-saute', name: 'Mantarlı Et Sote', nameEn: 'Beef Mushrooms Sauté', category: 'saute', description: 'Beef and mushrooms sautéed perfectly', price: 27.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'coban-kavurma', name: 'Çoban Kavurma', nameEn: 'Çoban Kavurma', category: 'saute', description: 'Shepherd-style roasted meat with vegetables', price: 27.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'chicken-kavurma', name: 'Tavuk Kavurma', nameEn: 'Chicken Kavurma', category: 'saute', description: 'Roasted chicken with traditional spices', price: 27.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'sac-tava', name: 'Saç Tava', nameEn: 'Saç Tava', category: 'saute', description: 'Diced meat cooked on a traditional iron plate', price: 27.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'cokertme', name: 'Çökertme Kebabı', nameEn: 'Çökertme', category: 'saute', description: 'Julienne beef served over crispy potato strings and garlic yogurt', price: 29.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'shrimp-tava', name: 'Karides Tava', nameEn: 'Shrimp Tava', category: 'saute', description: 'Shrimp cooked in a traditional pan', price: 26.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'hunkarbegendi', name: 'Hünkar Beğendi', nameEn: 'Hunkarbegendi', category: 'saute', description: 'Beef stew served over creamy roasted eggplant puree', price: 27.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+
+  // Doner
+  { id: 'iskender-beef', name: 'İskender Et Döner', nameEn: 'İskender Beef Döner Plate', category: 'doner', description: 'Thinly sliced beef over pita with tomato sauce and browned butter', price: 23.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'mix-doner', name: 'Karışık Döner', nameEn: 'Mix Döner Plate', category: 'doner', description: 'A mix of beef and chicken döner', price: 24.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'chicken-doner-plate', name: 'Tavuk Döner', nameEn: 'Chicken Döner Plate', category: 'doner', description: 'Chicken döner served on a plate', price: 22.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'chicken-iskender', name: 'Tavuk İskender', nameEn: 'Chicken İskender', category: 'doner', description: 'Chicken döner served İskender style', price: 26.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'beef-iskender', name: 'Et İskender', nameEn: 'Beef İskender', category: 'doner', description: 'Premium beef döner served İskender style', price: 27.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'beef-doner-durum', name: 'Et Döner Dürüm', nameEn: 'Beef Döner Dürüm', category: 'doner', description: 'Beef döner wrapped in fresh lavash', price: 15.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'chicken-doner-durum', name: 'Tavuk Döner Dürüm', nameEn: 'Chicken Döner Dürüm', category: 'doner', description: 'Chicken döner wrapped in fresh lavash', price: 14.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'adana-durum', name: 'Adana Dürüm', nameEn: 'Adana Kebab Dürüm', category: 'doner', description: 'Adana kebab wrapped in fresh lavash', price: 16.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'chicken-shish-durum', name: 'Tavuk Şiş Dürüm', nameEn: 'Chicken Shish Dürüm', category: 'doner', description: 'Chicken shish wrapped in fresh lavash', price: 15.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'beef-shish-durum', name: 'Dana Şiş Dürüm', nameEn: 'Beef Shish Dürüm', category: 'doner', description: 'Beef shish wrapped in fresh lavash', price: 17.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+
+  // Pide
+  { id: 'kusbasili-pide', name: 'Kuşbaşılı Pide', nameEn: 'Kuşbaşılı Pide', category: 'pide', description: 'Pide topped with diced meat and vegetables', price: 22.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'sucuk-pide', name: 'Sucuklu Pide', nameEn: 'Sucuk Pide', category: 'pide', description: 'Pide topped with Turkish garlic sausage', price: 19.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'saray-mix-pide', name: 'Saray Karışık Pide', nameEn: 'Saray Mix Pide', category: 'pide', description: 'A mix of various meats and cheeses', price: 23.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'mushrooms-pide', name: 'Mantarlı Pide', nameEn: 'Mushrooms Pide', category: 'pide', description: 'Pide topped with mushrooms and cheese', price: 19.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'chicken-doner-pide', name: 'Tavuk Dönerli Pide', nameEn: 'Chicken Döner Pide', category: 'pide', description: 'Pide topped with chicken döner', price: 20.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'beef-doner-pide', name: 'Et Dönerli Pide', nameEn: 'Beef Döner Pide', category: 'pide', description: 'Pide topped with beef döner', price: 21.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+  { id: 'lahmacun', name: 'Lahmacun', nameEn: 'Lahmacun', category: 'pide', description: 'Thin crust flatbread topped with minced meat and herbs', price: 18.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'antep-lahmacun', name: 'Antep Lahmacun', nameEn: 'Antep Lahmacun', category: 'pide', description: 'Spicier, authentic Gaziantep style lahmacun', price: 18.99, isPopular: true, isVegetarian: false, gradientStyle: g },
+  { id: 'spinach-pide', name: 'Ispanaklı Pide', nameEn: 'Spinach Pide', category: 'pide', description: 'Pide topped with spinach and cheese', price: 18.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'veg-pide', name: 'Sebzeli Pide', nameEn: 'Vegetarian Pide', category: 'pide', description: 'Pide topped with mixed vegetables', price: 19.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'cheese-pide', name: 'Peynirli Pide', nameEn: 'Cheese Pide', category: 'pide', description: 'Pide topped with melted cheese', price: 18.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'mix-doner-pide', name: 'Karışık Dönerli Pide', nameEn: 'Mix Döner Pide', category: 'pide', description: 'Pide topped with mixed döner meat', price: 23.99, isPopular: false, isVegetarian: false, gradientStyle: g },
+
+  // Margaritas
+  { id: 'mango-margarita', name: 'Mango Margarita', nameEn: 'Mango Margarita', category: 'margarita', description: 'Refreshing mango margarita', price: 10.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'strawberry-margarita', name: 'Çilekli Margarita', nameEn: 'Strawberry Margarita', category: 'margarita', description: 'Refreshing strawberry margarita', price: 10.99, isPopular: true, isVegetarian: true, gradientStyle: g },
+  { id: 'pina-colada', name: 'Piña Colada', nameEn: 'Pina Colada', category: 'margarita', description: 'Classic tropical blend', price: 10.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'pink-lady', name: 'Pink Lady', nameEn: 'Pink Lady', category: 'margarita', description: 'Signature pink cocktail', price: 10.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'saray-special', name: 'Saray Special', nameEn: 'Saray Special', category: 'margarita', description: 'Our signature house cocktail mix', price: 11.99, isPopular: true, isVegetarian: true, gradientStyle: g },
+
+  // Fresh Juices
+  { id: 'lemon-mint', name: 'Nane Limon', nameEn: 'Lemon Mint', category: 'fresh_juices', description: 'Freshly squeezed lemon with mint', price: 9.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'mango-juice', name: 'Mango Suyu', nameEn: 'Mango Juice', category: 'fresh_juices', description: 'Freshly squeezed mango juice', price: 9.99, isPopular: true, isVegetarian: true, gradientStyle: g },
+  { id: 'orange-juice', name: 'Portakal Suyu', nameEn: 'Orange Juice', category: 'fresh_juices', description: 'Freshly squeezed orange juice', price: 9.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'strawberry-juice', name: 'Çilek Suyu', nameEn: 'Strawberry Juice', category: 'fresh_juices', description: 'Freshly squeezed strawberry juice', price: 9.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+
+  // Milk Shakes
+  { id: 'mango-shake', name: 'Mango Shake', nameEn: 'Mango Shake', category: 'milk_shakes', description: 'Creamy mango shake', price: 10.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'strawberry-shake', name: 'Çilek Shake', nameEn: 'Strawberry Shake', category: 'milk_shakes', description: 'Creamy strawberry shake', price: 10.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'chocolate-shake', name: 'Çikolata Shake', nameEn: 'Chocolate Shake', category: 'milk_shakes', description: 'Rich chocolate shake', price: 10.99, isPopular: true, isVegetarian: true, gradientStyle: g },
+  { id: 'ferrero-shake', name: 'Ferrero Shake', nameEn: 'Ferrero Shake', category: 'milk_shakes', description: 'Premium Ferrero Rocher shake', price: 11.99, isPopular: true, isVegetarian: true, gradientStyle: g },
+  { id: 'snicker-shake', name: 'Snickers Shake', nameEn: 'Snicker Shake', category: 'milk_shakes', description: 'Loaded Snickers shake', price: 11.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'oreo-shake', name: 'Oreo Shake', nameEn: 'Oreo Shake', category: 'milk_shakes', description: 'Classic Oreo shake', price: 11.99, isPopular: true, isVegetarian: true, gradientStyle: g },
+
+  // Desserts
+  { id: 'baklava', name: 'Baklava', nameEn: 'Baklava', category: 'desserts', description: 'Classic pistachio baklava layered with phyllo and honey', price: 10.99, isPopular: true, isVegetarian: true, gradientStyle: g },
+  { id: 'sarma-baklava', name: 'Sarma Baklava', nameEn: 'Sarma Baklava', category: 'desserts', description: 'Rolled baklava packed with extra pistachios', price: 11.99, isPopular: true, isVegetarian: true, gradientStyle: g },
+  { id: 'havuc-dilimi', name: 'Havuç Dilimi', nameEn: 'Havuç Dilim', category: 'desserts', description: 'Carrot-slice style large baklava', price: 11.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'trilice', name: 'Trileçe', nameEn: 'Tralice', category: 'desserts', description: 'Caramel soaked three-milk cake', price: 10.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'kunefe', name: 'Künefe', nameEn: 'Kunefe', category: 'desserts', description: 'Sweet cheese pastry soaked in syrup, served warm', price: 11.99, isPopular: true, isVegetarian: true, gradientStyle: g },
+  { id: 'rice-pudding', name: 'Sütlaç', nameEn: 'Rice Pudding', category: 'desserts', description: 'Oven-baked rice pudding', price: 8.99, isPopular: false, isVegetarian: true, gradientStyle: g },
+  { id: 'cold-baklava', name: 'Soğuk Baklava', nameEn: 'Cold Baklava', category: 'desserts', description: 'Modern milky baklava soaked in cold milk syrup with cocoa', price: 11.99, isPopular: true, isVegetarian: true, gradientStyle: g },
 ];
 
-/**
- * Get dishes filtered by category.
- */
-export function getDishesByCategory(category: Category): Dish[] {
-  return menuData.filter((dish) => dish.category === category);
-}
-
-/**
- * Get popular dishes for the home page highlights.
- */
-export function getPopularDishes(): Dish[] {
-  return menuData.filter((dish) => dish.isPopular);
-}
-
-/**
- * Get a single dish by ID.
- */
-export function getDishById(id: string): Dish | undefined {
-  return menuData.find((dish) => dish.id === id);
-}
+export const getPopularDishes = () => menuData.filter((dish) => dish.isPopular);

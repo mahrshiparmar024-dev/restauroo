@@ -11,7 +11,7 @@ const FOOTER_NAV = [
 ];
 
 const SOCIAL_LINKS = [
-  { href: 'https://instagram.com', label: 'Instagram', icon: 'IG' },
+  { href: 'https://instagram.com/sarayturkishcuisine.ca', label: 'Instagram', icon: 'IG' },
   { href: 'https://facebook.com', label: 'Facebook', icon: 'FB' },
   { href: 'https://google.com/maps', label: 'Google Maps', icon: 'GM' },
 ];
@@ -55,7 +55,7 @@ export default function Footer() {
                 marginBottom: 'var(--space-4)',
               }}
             >
-              Anatolian
+              Saray
               <span style={{ color: 'var(--color-gold)' }}>.</span>
             </Link>
             <p
@@ -67,7 +67,7 @@ export default function Footer() {
                 maxWidth: '320px',
               }}
             >
-              Authentic Anatolian cuisine brought to Kitchener by a family with
+              Authentic Saray cuisine brought to Barrie by a family with
               three generations of recipes from Gaziantep.
             </p>
           </div>
@@ -139,7 +139,7 @@ export default function Footer() {
             >
               137 King Street West
               <br />
-              Kitchener, ON N2G 1A7
+              Barrie, ON N2G 1A7
               <br />
               <br />
               <span
@@ -221,7 +221,7 @@ export default function Footer() {
               letterSpacing: '0.08em',
             }}
           >
-            © 2025 Anatolian Kitchen. Kitchener, Ontario.
+            © 2025 Saray Kitchen. Barrie, Ontario.
           </p>
           <div
             style={{

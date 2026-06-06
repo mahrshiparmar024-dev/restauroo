@@ -78,7 +78,7 @@ export default function ContactPage() {
           >
             Find Us in
             <br />
-            Kitchener
+            Barrie
           </h1>
         </motion.div>
 
@@ -116,7 +116,7 @@ export default function ContactPage() {
                   }}
                 >
                   137 King Street West<br />
-                  Kitchener, ON N2G 1A7
+                  Barrie, ON N2G 1A7
                 </p>
               </div>
 
@@ -138,7 +138,7 @@ export default function ContactPage() {
                   }}
                 >
                   <a href="tel:+15195550123" style={{ color: 'var(--color-text)', textDecoration: 'none' }}>(519) 555-0123</a><br />
-                  <a href="mailto:hello@anatolian.ca" style={{ color: 'var(--color-text)', textDecoration: 'none' }}>hello@anatolian.ca</a>
+                  <a href="mailto:hello@saray.ca" style={{ color: 'var(--color-text)', textDecoration: 'none' }}>hello@saray.ca</a>
                 </p>
               </div>
             </div>
@@ -161,7 +161,7 @@ export default function ContactPage() {
                 allowFullScreen={false}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Google Maps Location of Anatolian"
+                title="Google Maps Location of Saray"
               />
             </div>
           </motion.div>

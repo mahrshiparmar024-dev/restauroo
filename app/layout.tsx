@@ -6,13 +6,13 @@ import Footer from '@/components/layout/Footer';
 import { Toaster } from 'sonner';
 
 export const metadata: Metadata = {
-  title: 'Anatolian — Authentic Turkish Kitchen · Kitchener, ON',
+  title: 'Saray — Authentic Turkish Kitchen · Barrie, ON',
   description:
-    'Slow-cooked kebabs, hand-rolled pide, and baklava that takes three days to make. Anatolian brings Gaziantep to Kitchener. Reserve your table or order online.',
+    'Slow-cooked kebabs, hand-rolled pide, and baklava that takes three days to make. Saray brings Gaziantep to Barrie. Reserve your table or order online.',
   keywords: [
     'Turkish restaurant',
-    'Kitchener',
-    'Anatolian',
+    'Barrie',
+    'Saray',
     'kebab',
     'pide',
     'baklava',
@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     'Waterloo Region',
   ],
   openGraph: {
-    title: 'Anatolian — Authentic Turkish Kitchen',
+    title: 'Saray — Authentic Turkish Kitchen',
     description:
-      'From Gaziantep to Kitchener. Slow-cooked kebabs, hand-rolled pide, and baklava that takes three days.',
+      'From Gaziantep to Barrie. Slow-cooked kebabs, hand-rolled pide, and baklava that takes three days.',
     locale: 'en_CA',
     type: 'website',
   },

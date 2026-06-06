@@ -82,10 +82,10 @@ export default function AboutPage() {
                 When the Yılmaz family moved to Canada in 2018, they brought very little. But tucked into a small suitcase was a leather-bound notebook filled with recipes, and a jar of grandmother Ayşe&apos;s proprietary kebab spice blend.
               </p>
               <p>
-                For years, they cooked for friends and neighbors in Waterloo Region. The response was always the same: "Where can we buy this?" In 2025, they finally answered by opening Anatolian.
+                For years, they cooked for friends and neighbors in Waterloo Region. The response was always the same: "Where can we buy this?" In 2025, they finally answered by opening Saray.
               </p>
               <p>
-                Anatolian isn't just a restaurant; it's a living archive of southeastern Turkish culinary traditions. We don't adapt our flavors. We cook exactly as we would back home.
+                Saray isn't just a restaurant; it's a living archive of southeastern Turkish culinary traditions. We don't adapt our flavors. We cook exactly as we would back home.
               </p>
             </div>
           </motion.div>

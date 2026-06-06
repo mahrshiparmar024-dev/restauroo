@@ -7,25 +7,25 @@
 /* ── Design Tokens ── */
 :root {
   /* ── Backgrounds ── */
-  --color-bg:          #F4F2EE;
-  --color-surface:     #FFFFFF;
-  --color-surface-2:   #EAE6DF;
-  --color-overlay:     rgba(17,17,17,0.85);
+  --color-bg:          #FCFBF8; /* Creamy off-white */
+  --color-surface:     #FFFDF9;
+  --color-surface-2:   #F5F3E9;
+  --color-overlay:     rgba(122, 27, 34, 0.85); /* Maroon overlay */
 
   /* ── Brand ── */
-  --color-terracotta:  #FF3B00; /* Loud Deleito Orange/Red */
-  --color-terracotta-h:#E63500;
-  --color-gold:        #FF3B00; /* Unified accent */
-  --color-gold-muted:  rgba(255,59,0,0.15);
+  --color-terracotta:  #7A1B22; /* Deep Maroon */
+  --color-terracotta-h:#66161C;
+  --color-gold:        #7A1B22; 
+  --color-gold-muted:  rgba(122, 27, 34, 0.15);
 
   /* ── Text ── */
-  --color-text:        #111111;
-  --color-text-muted:  #555555;
-  --color-text-faint:  rgba(17,17,17,0.35);
+  --color-text:        #2E1B1C; /* Dark maroon-tinted text */
+  --color-text-muted:  #5C4D4E;
+  --color-text-faint:  rgba(46, 27, 28, 0.35);
 
   /* ── Borders (Softer for restaurant feel) ── */
-  --color-border:      #E5E0D5;
-  --color-border-gold: #FF3B00;
+  --color-border:      #EBE6DD;
+  --color-border-gold: #7A1B22;
 
   /* ── Semantic ── */
   --color-success:     #00B85C;
@@ -74,8 +74,8 @@
   --dur-slow:    400ms;
 
   /* ── Shadows (Soft drop shadows) ── */
-  --shadow-card: 0px 10px 30px rgba(17,17,17,0.06);
-  --shadow-glow: 0 0 40px rgba(255,59,0,0.3);
+  --shadow-card: 0px 10px 30px rgba(122,27,34,0.06);
+  --shadow-glow: 0 0 40px rgba(122,27,34,0.3);
 }
 
 /* ── Tailwind v4 Theme Integration ── */
@@ -161,8 +161,33 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-surface-2);
+  background: var(--color-border);
   border-radius: var(--radius-full);
+}
+
+/* ── Print Styles ── */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-invoice, .print-invoice * {
+    visibility: visible;
+  }
+  .print-invoice {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    background: white;
+    color: black;
+  }
+  
+  /* Hide the regular success screen and header/footer */
+  .screen-only, header, footer, nav {
+    display: none !important;
+  }
 }
 
 ::-webkit-scrollbar-thumb:hover {
