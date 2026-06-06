@@ -23,8 +23,8 @@
   --color-text-muted:  #555555;
   --color-text-faint:  rgba(17,17,17,0.35);
 
-  /* ── Borders ── */
-  --color-border:      #111111;
+  /* ── Borders (Softer for restaurant feel) ── */
+  --color-border:      #E5E0D5;
   --color-border-gold: #FF3B00;
 
   /* ── Semantic ── */
@@ -45,7 +45,7 @@
   --text-2xl:  1.875rem;
   --text-3xl:  2.5rem;
   --text-4xl:  3.5rem;
-  --text-hero: clamp(4rem, 12vw, 10rem);
+  --text-hero: clamp(2.5rem, 8vw + 1rem, 6rem);
 
   /* ── Spacing (8px base) ── */
   --space-1:  0.25rem;
@@ -59,11 +59,11 @@
   --space-24: 6rem;
   --space-32: 8rem;
 
-  /* ── Radius (Sharper for brutalist) ── */
-  --radius-sm: 0px;
-  --radius-md: 4px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
+  /* ── Radius (Softer edges) ── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
   --radius-full: 9999px;
 
   /* ── Motion (Snappier) ── */
@@ -73,8 +73,8 @@
   --dur-base:    200ms;
   --dur-slow:    400ms;
 
-  /* ── Shadows (Solid Brutalist Offsets) ── */
-  --shadow-card: 6px 6px 0px rgba(17,17,17,1);
+  /* ── Shadows (Soft drop shadows) ── */
+  --shadow-card: 0px 10px 30px rgba(17,17,17,0.06);
   --shadow-glow: 0 0 40px rgba(255,59,0,0.3);
 }
 

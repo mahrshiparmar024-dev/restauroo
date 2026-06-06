@@ -46,15 +46,24 @@ export default function MenuFilter({ active, onChange }: MenuFilterProps) {
       aria-label="Menu categories"
       style={{
         position: 'relative',
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: 'var(--space-2)',
         padding: 'var(--space-1)',
         borderRadius: 'var(--radius-full)',
         backgroundColor: 'var(--color-surface)',
         border: '1px solid var(--color-border)',
       }}
     >
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'nowrap',
+          overflowX: 'auto',
+          gap: 'var(--space-2)',
+          scrollbarWidth: 'none', /* Firefox */
+          msOverflowStyle: 'none', /* IE and Edge */
+          WebkitOverflowScrolling: 'touch',
+        }}
+        className="hide-scrollbar"
+      >
       {/* Sliding indicator */}
       <motion.div
         animate={{
@@ -114,6 +123,7 @@ export default function MenuFilter({ active, onChange }: MenuFilterProps) {
           {cat.label}
         </button>
       ))}
+      </div>
     </div>
   );
 }

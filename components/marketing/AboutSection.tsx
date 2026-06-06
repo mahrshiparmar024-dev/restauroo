@@ -35,6 +35,7 @@ export default function AboutSection() {
               alt="Interior of Anatolian restaurant"
               fill
               style={{ objectFit: 'cover' }}
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
         </motion.div>

@@ -52,12 +52,12 @@ export default function Navbar() {
         top: 0,
         left: 0,
         right: 0,
-        zIndex: 50,
+        zIndex: 999,
         transition: `all var(--dur-base) var(--ease-out)`,
-        backgroundColor: isScrolled
+        backgroundColor: isScrolled || isOpen
           ? 'rgba(15, 14, 13, 0.95)'
           : 'transparent',
-        backdropFilter: isScrolled ? 'blur(12px)' : 'none',
+        backdropFilter: isScrolled || isOpen ? 'blur(12px)' : 'none',
         borderBottom: isScrolled
           ? '1px solid var(--color-border)'
           : '1px solid transparent',
@@ -79,9 +79,10 @@ export default function Navbar() {
             fontFamily: 'var(--font-display)',
             fontSize: 'var(--text-xl)',
             fontWeight: 700,
-            color: 'var(--color-text)',
+            color: (isScrolled || isOpen) ? '#ffffff' : 'var(--color-text)',
             letterSpacing: '-0.02em',
             textDecoration: 'none',
+            transition: 'color var(--dur-base) var(--ease-out)',
           }}
         >
           Anatolian
@@ -106,8 +107,8 @@ export default function Navbar() {
                 fontSize: 'var(--text-sm)',
                 color:
                   pathname === link.href
-                    ? 'var(--color-text)'
-                    : 'var(--color-text-muted)',
+                    ? ((isScrolled || isOpen) ? '#ffffff' : 'var(--color-text)')
+                    : ((isScrolled || isOpen) ? 'rgba(255,255,255,0.7)' : 'var(--color-text-muted)'),
                 transition: `color var(--dur-fast) var(--ease-out)`,
                 fontWeight: pathname === link.href ? 500 : 400,
               }}
@@ -137,10 +138,11 @@ export default function Navbar() {
               height="18"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="var(--color-text)"
+              stroke={(isScrolled || isOpen) ? '#ffffff' : 'var(--color-text)'}
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
+              style={{ transition: 'stroke var(--dur-base) var(--ease-out)' }}
             >
               <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
               <line x1="3" y1="6" x2="21" y2="6" />
@@ -209,10 +211,11 @@ export default function Navbar() {
               height="18"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="var(--color-text)"
+              stroke={(isScrolled || isOpen) ? '#ffffff' : 'var(--color-text)'}
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
+              style={{ transition: 'stroke var(--dur-base) var(--ease-out)' }}
             >
               <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
               <line x1="3" y1="6" x2="21" y2="6" />
@@ -267,7 +270,7 @@ export default function Navbar() {
                 display: 'block',
                 width: '20px',
                 height: '1.5px',
-                backgroundColor: 'var(--color-text)',
+                backgroundColor: (isScrolled || isOpen) ? '#ffffff' : 'var(--color-text)',
                 transition: `all var(--dur-base) var(--ease-out)`,
                 transform: isOpen
                   ? 'rotate(45deg) translate(4.5px, 4.5px)'
@@ -279,7 +282,7 @@ export default function Navbar() {
                 display: 'block',
                 width: '20px',
                 height: '1.5px',
-                backgroundColor: 'var(--color-text)',
+                backgroundColor: (isScrolled || isOpen) ? '#ffffff' : 'var(--color-text)',
                 transition: `all var(--dur-base) var(--ease-out)`,
                 opacity: isOpen ? 0 : 1,
               }}
@@ -289,7 +292,7 @@ export default function Navbar() {
                 display: 'block',
                 width: '20px',
                 height: '1.5px',
-                backgroundColor: 'var(--color-text)',
+                backgroundColor: (isScrolled || isOpen) ? '#ffffff' : 'var(--color-text)',
                 transition: `all var(--dur-base) var(--ease-out)`,
                 transform: isOpen
                   ? 'rotate(-45deg) translate(4.5px, -4.5px)'
@@ -344,8 +347,8 @@ export default function Navbar() {
                       fontWeight: 600,
                       color:
                         pathname === link.href
-                          ? 'var(--color-text)'
-                          : 'var(--color-text-muted)',
+                          ? '#ffffff'
+                          : 'rgba(255,255,255,0.6)',
                       padding: 'var(--space-3) 0',
                       transition: `color var(--dur-fast) var(--ease-out)`,
                     }}

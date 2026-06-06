@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import AnimatedButton from '@/components/ui/AnimatedButton';
 import { prefersReducedMotion } from '@/lib/utils';
 
-const HERO_WORDS = ['ANATOLIAN', 'KITCHEN.'];
+const HERO_WORDS = ['ANATOLIAN'];
 
 export default function HeroSection() {
   const noMotion =
@@ -67,15 +67,18 @@ export default function HeroSection() {
         style={{
           position: 'relative',
           zIndex: 1,
-          display: 'grid',
-          gridTemplateColumns: '1fr',
-          gap: 'var(--space-12)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
           paddingTop: 'var(--space-16)',
           paddingBottom: 'var(--space-16)',
+          minHeight: '60vh',
         }}
       >
-        {/* Text block — left-aligned, not centered */}
-        <div style={{ maxWidth: '720px' }}>
+        {/* Text block */}
+        <div style={{ maxWidth: '800px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           {/* Eyebrow */}
           <motion.span
             initial={noMotion ? false : { opacity: 0, y: 10 }}
@@ -98,37 +101,25 @@ export default function HeroSection() {
             🔥 KITCHENER, ON
           </motion.span>
 
-          {/* Headline — word stagger */}
-          <h1
+          {/* Headline — letter spacing animation */}
+          <motion.h1
+            initial={noMotion ? false : { opacity: 0, scale: 0.95, letterSpacing: '0em' }}
+            animate={{ opacity: 1, scale: 1, letterSpacing: '-0.03em' }}
+            transition={{
+              duration: 1.2,
+              ease: [0.16, 1, 0.3, 1],
+            }}
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: 'var(--text-hero)',
               fontWeight: 800,
               lineHeight: 0.92,
-              letterSpacing: '-0.03em',
               color: 'var(--color-text)',
-              marginBottom: 'var(--space-8)',
+              marginBottom: 'var(--space-6)',
             }}
           >
-            {HERO_WORDS.map((word, i) => (
-              <motion.span
-                key={i}
-                initial={noMotion ? false : { opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.1 + i * 0.1,
-                  ease: [0.25, 1, 0.5, 1],
-                }}
-                style={{
-                  display: 'inline-block',
-                  marginRight: i < HERO_WORDS.length - 1 ? '0.2em' : 0,
-                }}
-              >
-                {word}
-              </motion.span>
-            ))}
-          </h1>
+            ANATOLIAN
+          </motion.h1>
 
           {/* Subtitle */}
           <motion.p
@@ -164,6 +155,7 @@ export default function HeroSection() {
             style={{
               display: 'flex',
               flexWrap: 'wrap',
+              justifyContent: 'center',
               gap: 'var(--space-4)',
             }}
           >
@@ -223,42 +215,7 @@ export default function HeroSection() {
             </span>
           </motion.div>
         </div>
-
-        {/* Right side — hero image */}
-        <motion.div
-          initial={noMotion ? false : { opacity: 0, x: 50, y: '-50%' }}
-          animate={{ opacity: 1, x: 0, y: '-50%' }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 1, 0.5, 1] }}
-          style={{
-            position: 'absolute',
-            right: '5%',
-            top: '50%',
-            width: '40%',
-            height: '60%',
-            border: '2px solid var(--color-border)',
-            boxShadow: '8px 8px 0px var(--color-border)',
-            zIndex: 0,
-            overflow: 'hidden',
-          }}
-          className="hero-deco"
-          aria-hidden="true"
-        >
-          <Image
-            src="/images/home_hero_1780743742554.png"
-            alt="Anatolian Turkish Cuisine"
-            fill
-            style={{ objectFit: 'cover' }}
-            priority
-          />
-        </motion.div>
       </div>
-      <style jsx global>{`
-        @media (max-width: 768px) {
-          .hero-deco {
-            display: none !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }
