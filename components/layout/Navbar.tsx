@@ -91,7 +91,6 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <div
           style={{
-            display: 'flex',
             alignItems: 'center',
             gap: 'var(--space-8)',
           }}
@@ -187,7 +186,6 @@ export default function Navbar() {
         {/* Mobile: Cart + Hamburger */}
         <div
           style={{
-            display: 'flex',
             alignItems: 'center',
             gap: 'var(--space-3)',
           }}
@@ -364,17 +362,17 @@ export default function Navbar() {
       {/* Responsive styles */}
       <style jsx global>{`
         .desktop-nav {
-          display: none;
+          display: none !important;
         }
         .mobile-nav-controls {
           display: flex;
         }
         @media (min-width: 768px) {
           .desktop-nav {
-            display: flex;
+            display: flex !important;
           }
           .mobile-nav-controls {
-            display: none;
+            display: none !important;
           }
           .mobile-menu {
             display: none !important;

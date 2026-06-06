@@ -55,10 +55,10 @@ export default function ExperienceSection() {
     <section className="section-padding" aria-label="The Anatolian experience">
       <div className="site-container">
         <motion.div
-          initial={noMotion ? false : { opacity: 0, y: 30 }}
+          initial={noMotion ? false : { opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
           style={{
             marginBottom: 'var(--space-16)',
             textAlign: 'right',
@@ -86,22 +86,24 @@ export default function ExperienceSection() {
           {BENTO_ITEMS.map((item, index) => (
             <motion.article
               key={item.title}
-              initial={noMotion ? false : { opacity: 0, y: 30 }}
+              initial={noMotion ? false : { opacity: 0, y: 80 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{
-                duration: 0.4,
-                delay: index * 0.07,
-                ease: [0.16, 1, 0.3, 1],
+                duration: 0.5,
+                delay: index * 0.1,
+                ease: [0.25, 1, 0.5, 1],
               }}
               className={`bento-item bento-${item.span}`}
               style={{
                 position: 'relative',
-                borderRadius: 'var(--radius-lg)',
+                borderRadius: 'var(--radius-md)',
                 overflow: 'hidden',
-                border: '1px solid var(--color-border)',
+                border: '2px solid var(--color-border)',
+                boxShadow: '4px 4px 0px var(--color-border)',
                 minHeight: item.span === 'large' ? '320px' : '240px',
-                transition: `all var(--dur-base) var(--ease-out)`,
+                transition: `all var(--dur-fast) var(--ease-out)`,
+                backgroundColor: 'var(--color-surface)',
               }}
             >
               {/* Background gradient */}
@@ -140,9 +142,10 @@ export default function ExperienceSection() {
                   style={{
                     fontFamily: 'var(--font-display)',
                     fontSize: 'var(--text-xl)',
-                    fontWeight: 600,
-                    color: 'var(--color-text)',
+                    fontWeight: 800,
+                    color: '#ffffff',
                     marginBottom: 'var(--space-2)',
+                    textTransform: 'uppercase',
                   }}
                 >
                   {item.title}
@@ -151,7 +154,7 @@ export default function ExperienceSection() {
                   style={{
                     fontFamily: 'var(--font-body)',
                     fontSize: 'var(--text-sm)',
-                    color: 'var(--color-text-muted)',
+                    color: '#dddddd',
                     lineHeight: 1.6,
                     maxWidth: '320px',
                   }}
@@ -171,8 +174,8 @@ export default function ExperienceSection() {
           gap: var(--space-4);
         }
         .bento-item:hover {
-          border-color: var(--color-border-gold) !important;
-          box-shadow: var(--shadow-glow);
+          transform: translate(-4px, -4px);
+          box-shadow: 8px 8px 0px var(--color-border) !important;
         }
         @media (min-width: 768px) {
           .bento-grid {

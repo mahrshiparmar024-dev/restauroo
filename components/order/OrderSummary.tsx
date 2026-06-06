@@ -10,6 +10,8 @@ interface FormData {
   name: string;
   phone: string;
   email: string;
+  orderType: 'dine-in' | 'take-out' | 'delivery';
+  address: string;
   specialInstructions: string;
 }
 
@@ -17,6 +19,7 @@ interface FormErrors {
   name?: string;
   phone?: string;
   email?: string;
+  address?: string;
 }
 
 
@@ -32,6 +35,8 @@ export default function OrderSummary() {
     name: '',
     phone: '',
     email: '',
+    orderType: 'take-out',
+    address: '',
     specialInstructions: '',
   });
   const [promoInput, setPromoInput] = useState('');
@@ -50,6 +55,9 @@ export default function OrderSummary() {
       errs.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
       errs.email = 'Please enter a valid email address';
+    }
+    if (formData.orderType === 'delivery' && !formData.address.trim()) {
+      errs.address = 'Delivery address is required';
     }
     return errs;
   };
@@ -70,6 +78,7 @@ export default function OrderSummary() {
       if (!newData.name.trim()) errs.name = 'Name is required';
       if (!newData.phone.trim()) errs.phone = 'Phone number is required';
       if (!newData.email.trim()) errs.email = 'Email is required';
+      if (newData.orderType === 'delivery' && !newData.address.trim()) errs.address = 'Delivery address is required';
       setErrors(errs);
     }
   };
@@ -78,7 +87,7 @@ export default function OrderSummary() {
     e.preventDefault();
     const validationErrors = validate();
     setErrors(validationErrors);
-    setTouched({ name: true, phone: true, email: true });
+    setTouched({ name: true, phone: true, email: true, address: true });
 
     if (Object.keys(validationErrors).length === 0) {
       const orderNumber = generateOrderNumber(Date.now());
@@ -398,13 +407,55 @@ export default function OrderSummary() {
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: 'var(--text-xl)',
-              fontWeight: 600,
+              fontWeight: 800,
               color: 'var(--color-text)',
               marginBottom: 'var(--space-6)',
+              textTransform: 'uppercase',
             }}
           >
             Checkout Details
           </h3>
+
+          {/* Order Type Selection */}
+          <div style={{ marginBottom: 'var(--space-6)' }}>
+            <label
+              style={{
+                display: 'block',
+                fontFamily: 'var(--font-mono)',
+                fontSize: 'var(--text-xs)',
+                color: 'var(--color-text-muted)',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                marginBottom: 'var(--space-2)',
+              }}
+            >
+              Order Type
+            </label>
+            <div style={{ display: 'flex', gap: 'var(--space-2)', background: 'var(--color-bg)', padding: 'var(--space-1)', borderRadius: 'var(--radius-md)', border: '2px solid var(--color-border)' }}>
+              {(['dine-in', 'take-out', 'delivery'] as const).map((type) => (
+                <button
+                  key={type}
+                  type="button"
+                  onClick={() => handleChange('orderType', type)}
+                  style={{
+                    flex: 1,
+                    padding: 'var(--space-2)',
+                    borderRadius: 'var(--radius-sm)',
+                    border: 'none',
+                    background: formData.orderType === type ? 'var(--color-border)' : 'transparent',
+                    color: formData.orderType === type ? 'var(--color-bg)' : 'var(--color-text)',
+                    fontFamily: 'var(--font-display)',
+                    fontWeight: 800,
+                    textTransform: 'uppercase',
+                    cursor: 'pointer',
+                    transition: 'all var(--dur-fast) var(--ease-out)',
+                  }}
+                >
+                  {type.replace('-', ' ')}
+                </button>
+              ))}
+            </div>
+          </div>
 
           {/* Name */}
           <div style={{ marginBottom: 'var(--space-4)' }}>
@@ -571,7 +622,62 @@ export default function OrderSummary() {
             )}
           </div>
 
-
+          {/* Conditional Address for Delivery */}
+          {formData.orderType === 'delivery' && (
+            <div style={{ marginBottom: 'var(--space-4)' }}>
+              <label
+                htmlFor="checkout-address"
+                style={{
+                  display: 'block',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 'var(--text-xs)',
+                  color: 'var(--color-text-muted)',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  marginBottom: 'var(--space-2)',
+                }}
+              >
+                Delivery Address
+              </label>
+              <div style={{ position: 'relative' }}>
+                <input
+                  id="checkout-address"
+                  type="text"
+                  value={formData.address}
+                  onChange={(e) => handleChange('address', e.target.value)}
+                  onBlur={() => handleBlur('address')}
+                  style={inputStyle('address')}
+                  placeholder="123 Main St, Unit 4"
+                />
+                {isFieldValid('address') && (
+                  <span
+                    style={{
+                      position: 'absolute',
+                      right: 'var(--space-3)',
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      color: 'var(--color-success)',
+                      fontSize: 'var(--text-sm)',
+                    }}
+                  >
+                    ✓
+                  </span>
+                )}
+              </div>
+              {isFieldInvalid('address') && (
+                <p
+                  style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: 'var(--text-xs)',
+                    color: 'var(--color-error)',
+                    marginTop: 'var(--space-1)',
+                  }}
+                >
+                  {errors.address}
+                </p>
+              )}
+            </div>
+          )}
 
           {/* Special Instructions */}
           <div style={{ marginBottom: 'var(--space-6)' }}>

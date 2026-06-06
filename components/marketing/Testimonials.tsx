@@ -37,10 +37,10 @@ export default function Testimonials() {
     >
       <div className="site-container">
         <motion.div
-          initial={noMotion ? false : { opacity: 0, y: 30 }}
+          initial={noMotion ? false : { opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
           style={{ marginBottom: 'var(--space-16)' }}
         >
           <SectionEyebrow text="Word of Mouth" />
@@ -64,22 +64,23 @@ export default function Testimonials() {
           {TESTIMONIALS.map((testimonial, index) => (
             <motion.blockquote
               key={testimonial.author}
-              initial={noMotion ? false : { opacity: 0, y: 30 }}
+              initial={noMotion ? false : { opacity: 0, y: 80 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{
-                duration: 0.4,
-                delay: index * 0.07,
-                ease: [0.16, 1, 0.3, 1],
+                duration: 0.5,
+                delay: index * 0.1,
+                ease: [0.25, 1, 0.5, 1],
               }}
               className="testimonial-card"
               style={{
                 padding: 'var(--space-8)',
-                borderRadius: 'var(--radius-lg)',
-                border: '1px solid var(--color-border)',
+                borderRadius: 'var(--radius-md)',
+                border: '2px solid var(--color-border)',
                 backgroundColor: 'var(--color-bg)',
+                boxShadow: '4px 4px 0px var(--color-border)',
                 marginTop: index === 1 ? 'var(--space-8)' : '0',
-                transition: `all var(--dur-base) var(--ease-out)`,
+                transition: `all var(--dur-fast) var(--ease-out)`,
               }}
             >
               {/* Gold quote mark */}
@@ -166,9 +167,8 @@ export default function Testimonials() {
           gap: var(--space-6);
         }
         .testimonial-card:hover {
-          border-color: var(--color-border-gold) !important;
-          transform: translateY(-4px);
-          box-shadow: var(--shadow-card);
+          transform: translate(-4px, -4px);
+          box-shadow: 8px 8px 0px var(--color-border) !important;
         }
         @media (min-width: 768px) {
           .testimonials-grid {

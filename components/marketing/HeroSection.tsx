@@ -1,10 +1,11 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import AnimatedButton from '@/components/ui/AnimatedButton';
 import { prefersReducedMotion } from '@/lib/utils';
 
-const HERO_WORDS = ['Anatolia,', 'Plated.'];
+const HERO_WORDS = ['ANATOLIAN', 'KITCHEN.'];
 
 export default function HeroSection() {
   const noMotion =
@@ -21,13 +22,12 @@ export default function HeroSection() {
         overflow: 'hidden',
       }}
     >
-      {/* Background gradient */}
+      {/* Background */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          background:
-            'linear-gradient(160deg, #0f0e0d 0%, #1a100a 30%, #2a1a0e 50%, #1a0f08 75%, #0f0e0d 100%)',
+          background: 'var(--color-bg)',
           zIndex: 0,
         }}
       />
@@ -41,13 +41,13 @@ export default function HeroSection() {
           width: '60%',
           height: '80%',
           background:
-            'radial-gradient(ellipse at center, rgba(200, 64, 26, 0.08) 0%, transparent 70%)',
+            'radial-gradient(ellipse at center, rgba(255, 59, 0, 0.15) 0%, transparent 70%)',
           zIndex: 0,
           pointerEvents: 'none',
         }}
       />
 
-      {/* Gold accent glow — bottom left */}
+      {/* Terracotta accent glow — bottom left */}
       <div
         style={{
           position: 'absolute',
@@ -56,7 +56,7 @@ export default function HeroSection() {
           width: '50%',
           height: '60%',
           background:
-            'radial-gradient(ellipse at center, rgba(232, 160, 32, 0.05) 0%, transparent 70%)',
+            'radial-gradient(ellipse at center, rgba(255, 59, 0, 0.1) 0%, transparent 70%)',
           zIndex: 0,
           pointerEvents: 'none',
         }}
@@ -82,16 +82,20 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 'var(--text-xs)',
-              color: 'var(--color-gold)',
-              letterSpacing: '0.2em',
+              fontFamily: 'var(--font-display)',
+              fontSize: 'var(--text-lg)',
+              fontWeight: 800,
+              color: 'var(--color-terracotta)',
+              letterSpacing: '0.05em',
               textTransform: 'uppercase',
-              display: 'block',
               marginBottom: 'var(--space-6)',
+              border: '2px solid var(--color-border)',
+              padding: '4px 12px',
+              display: 'inline-block',
+              boxShadow: '4px 4px 0px var(--color-border)',
             }}
           >
-            Kitchener, Ontario
+            🔥 KITCHENER, ON
           </motion.span>
 
           {/* Headline — word stagger */}
@@ -112,13 +116,13 @@ export default function HeroSection() {
                 initial={noMotion ? false : { opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.6,
-                  delay: 0.3 + i * 0.06,
-                  ease: [0.16, 1, 0.3, 1],
+                  duration: 0.5,
+                  delay: 0.1 + i * 0.1,
+                  ease: [0.25, 1, 0.5, 1],
                 }}
                 style={{
                   display: 'inline-block',
-                  marginRight: i < HERO_WORDS.length - 1 ? '0.3em' : 0,
+                  marginRight: i < HERO_WORDS.length - 1 ? '0.2em' : 0,
                 }}
               >
                 {word}
@@ -132,8 +136,8 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.5,
-              delay: 0.6,
-              ease: [0.16, 1, 0.3, 1],
+              delay: 0.3,
+              ease: [0.25, 1, 0.5, 1],
             }}
             style={{
               fontFamily: 'var(--font-body)',
@@ -154,8 +158,8 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.4,
-              delay: 0.8,
-              ease: [0.16, 1, 0.3, 1],
+              delay: 0.4,
+              ease: [0.25, 1, 0.5, 1],
             }}
             style={{
               display: 'flex',
@@ -177,8 +181,8 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.4,
-              delay: 1.0,
-              ease: [0.16, 1, 0.3, 1],
+              delay: 0.5,
+              ease: [0.25, 1, 0.5, 1],
             }}
             style={{
               marginTop: 'var(--space-8)',
@@ -198,11 +202,8 @@ export default function HeroSection() {
                     borderRadius: '50%',
                     border: '2px solid var(--color-bg)',
                     marginLeft: i > 1 ? '-12px' : '0',
-                    background: `linear-gradient(135deg, var(--color-gold) 0%, var(--color-border-gold) 100%)`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#1a100a',
+                    background: 'var(--color-terracotta)',
+                    color: '#ffffff',
                     fontSize: '10px',
                     fontWeight: 800,
                   }}
@@ -223,32 +224,34 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Right side — decorative gradient image */}
+        {/* Right side — hero image */}
         <motion.div
-          initial={noMotion ? false : { opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          initial={noMotion ? false : { opacity: 0, x: 50, y: '-50%' }}
+          animate={{ opacity: 1, x: 0, y: '-50%' }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 1, 0.5, 1] }}
           style={{
             position: 'absolute',
-            right: 0,
+            right: '5%',
             top: '50%',
-            transform: 'translateY(-50%)',
-            width: '45%',
-            height: '70%',
-            background:
-              'linear-gradient(135deg, #3d1f0d 0%, #7a3520 30%, #c8401a 55%, #e8a020 80%, #d4a843 100%)',
-            borderRadius: 'var(--radius-xl)',
-            opacity: 0.15,
+            width: '40%',
+            height: '60%',
+            border: '2px solid var(--color-border)',
+            boxShadow: '8px 8px 0px var(--color-border)',
             zIndex: 0,
-            pointerEvents: 'none',
+            overflow: 'hidden',
           }}
           className="hero-deco"
           aria-hidden="true"
-        />
+        >
+          <Image
+            src="/images/home_hero_1780743742554.png"
+            alt="Anatolian Turkish Cuisine"
+            fill
+            style={{ objectFit: 'cover' }}
+            priority
+          />
+        </motion.div>
       </div>
-
-
-
       <style jsx global>{`
         @media (max-width: 768px) {
           .hero-deco {

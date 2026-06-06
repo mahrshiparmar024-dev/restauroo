@@ -1,8 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import SectionEyebrow from '@/components/ui/SectionEyebrow';
-import GradientImage from '@/components/ui/GradientImage';
 import { prefersReducedMotion } from '@/lib/utils';
 
 export default function AboutSection() {
@@ -22,41 +22,29 @@ export default function AboutSection() {
       >
         {/* Image — left side on desktop (55% width) */}
         <motion.div
-          initial={noMotion ? false : { opacity: 0, x: -30 }}
+          initial={noMotion ? false : { opacity: 0, x: -80 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
           className="about-image"
           style={{ position: 'relative' }}
         >
-          <GradientImage
-            gradient="linear-gradient(180deg, #0f0e0d 0%, #2a1a0e 40%, #3d2010 70%, #1a0f08 100%)"
-            alt="Interior of Anatolian restaurant — warm ambient lighting over wooden tables"
-            aspectRatio="4/3"
-            className=""
-          />
-          {/* Overlapping gold accent bar */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '-16px',
-              right: '-16px',
-              width: '40%',
-              height: '30%',
-              border: '1px solid var(--color-border-gold)',
-              borderRadius: 'var(--radius-md)',
-              pointerEvents: 'none',
-            }}
-            aria-hidden="true"
-          />
+          <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', borderRadius: 'var(--radius-md)', overflow: 'hidden', border: '2px solid var(--color-border)', boxShadow: '6px 6px 0px var(--color-border)' }}>
+            <Image
+              src="/images/home_about_1780743750781.png"
+              alt="Interior of Anatolian restaurant"
+              fill
+              style={{ objectFit: 'cover' }}
+            />
+          </div>
         </motion.div>
 
         {/* Text — right side on desktop (45% width) */}
         <motion.div
-          initial={noMotion ? false : { opacity: 0, y: 30 }}
+          initial={noMotion ? false : { opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1], delay: 0.2 }}
         >
           <SectionEyebrow text="From Gaziantep to Waterloo Region" />
 
@@ -125,10 +113,11 @@ export default function AboutSection() {
                 <span
                   style={{
                     fontFamily: 'var(--font-display)',
-                    fontSize: 'var(--text-2xl)',
-                    fontWeight: 700,
-                    color: 'var(--color-gold)',
+                    fontSize: 'var(--text-3xl)',
+                    fontWeight: 800,
+                    color: 'var(--color-terracotta)',
                     display: 'block',
+                    marginBottom: 'var(--space-1)',
                   }}
                 >
                   {stat.value}

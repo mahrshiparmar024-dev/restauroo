@@ -17,15 +17,15 @@ export default function MenuHighlights() {
     <section
       className="section-padding"
       aria-label="Menu highlights"
-      style={{ backgroundColor: 'var(--color-surface)' }}
+      style={{ backgroundColor: 'var(--color-bg)', borderTop: '2px solid var(--color-border)', borderBottom: '2px solid var(--color-border)' }}
     >
       <div className="site-container">
         {/* Header — left-aligned */}
         <motion.div
-          initial={noMotion ? false : { opacity: 0, y: 30 }}
+          initial={noMotion ? false : { opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
           style={{
             marginBottom: 'var(--space-16)',
             display: 'flex',
@@ -67,28 +67,29 @@ export default function MenuHighlights() {
           {popularDishes.map((dish, index) => (
             <motion.div
               key={dish.id}
-              initial={noMotion ? false : { opacity: 0, y: 30 }}
+              initial={noMotion ? false : { opacity: 0, y: 80 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{
-                duration: 0.4,
-                delay: index * 0.07,
-                ease: [0.16, 1, 0.3, 1],
+                duration: 0.5,
+                delay: index * 0.1,
+                ease: [0.25, 1, 0.5, 1],
               }}
               className={`highlight-card ${index === 0 ? 'highlight-card-large' : ''}`}
               style={{
                 position: 'relative',
-                borderRadius: 'var(--radius-lg)',
-                border: '1px solid var(--color-border)',
+                borderRadius: 'var(--radius-md)',
+                border: '2px solid var(--color-border)',
                 overflow: 'hidden',
-                transition: `all 0.4s cubic-bezier(0.16, 1, 0.3, 1)`,
+                transition: `all 0.2s var(--ease-out)`,
                 cursor: 'pointer',
-                backgroundColor: 'var(--color-bg)',
+                backgroundColor: 'var(--color-surface)',
+                boxShadow: '4px 4px 0px var(--color-border)',
               }}
               whileHover={{ 
-                y: -8, 
-                boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
-                borderColor: 'var(--color-border-gold)',
+                x: -4,
+                y: -4, 
+                boxShadow: '8px 8px 0px var(--color-border)',
               }}
             >
               {/* Social Engineering Badges */}
@@ -98,19 +99,19 @@ export default function MenuHighlights() {
                   top: 'var(--space-4)',
                   right: 'var(--space-4)',
                   zIndex: 10,
-                  background: 'rgba(232, 160, 32, 0.95)',
-                  color: '#1a100a',
-                  padding: '4px 12px',
-                  borderRadius: '100px',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '10px',
-                  fontWeight: 700,
-                  letterSpacing: '0.1em',
+                  background: 'var(--color-terracotta)',
+                  color: '#ffffff',
+                  padding: '6px 16px',
+                  borderRadius: 'var(--radius-sm)',
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '12px',
+                  fontWeight: 800,
+                  letterSpacing: '0.05em',
                   textTransform: 'uppercase',
-                  boxShadow: '0 4px 12px rgba(232, 160, 32, 0.3)',
-                  backdropFilter: 'blur(4px)',
+                  border: '2px solid var(--color-border)',
+                  boxShadow: '2px 2px 0px var(--color-border)',
                 }}>
-                  🔥 Trending Now
+                  HOT
                 </div>
               )}
               {index === 2 && (
@@ -119,19 +120,19 @@ export default function MenuHighlights() {
                   top: 'var(--space-4)',
                   right: 'var(--space-4)',
                   zIndex: 10,
-                  background: 'rgba(200, 64, 26, 0.95)',
+                  background: '#00B85C',
                   color: 'white',
-                  padding: '4px 12px',
-                  borderRadius: '100px',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '10px',
-                  fontWeight: 700,
-                  letterSpacing: '0.1em',
+                  padding: '6px 16px',
+                  borderRadius: 'var(--radius-sm)',
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '12px',
+                  fontWeight: 800,
+                  letterSpacing: '0.05em',
                   textTransform: 'uppercase',
-                  boxShadow: '0 4px 12px rgba(200, 64, 26, 0.3)',
-                  backdropFilter: 'blur(4px)',
+                  border: '2px solid var(--color-border)',
+                  boxShadow: '2px 2px 0px var(--color-border)',
                 }}>
-                  Almost Sold Out
+                  SELLING FAST
                 </div>
               )}
               <Link
@@ -144,6 +145,7 @@ export default function MenuHighlights() {
                 <div
                   className="img-wrapper"
                   style={{
+                    borderBottom: '2px solid var(--color-border)',
                     position: 'relative',
                     width: '100%',
                     aspectRatio: index === 0 ? '16/10' : '4/3',

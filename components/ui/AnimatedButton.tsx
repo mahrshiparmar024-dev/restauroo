@@ -20,34 +20,32 @@ export default function AnimatedButton({
   ...props
 }: AnimatedButtonProps) {
   const baseStyles: React.CSSProperties = {
-    fontFamily: 'var(--font-mono)',
-    fontSize: 'var(--text-sm)',
-    letterSpacing: '0.08em',
+    fontFamily: 'var(--font-display)',
+    fontSize: 'var(--text-lg)',
     padding: 'var(--space-3) var(--space-8)',
-    borderRadius: 'var(--radius-full)',
+    borderRadius: 'var(--radius-md)',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 'var(--space-2)',
     cursor: 'pointer',
-    transition: `background-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out)`,
+    transition: `background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out)`,
     textTransform: 'uppercase' as const,
-    fontWeight: 600,
-    border: 'none',
+    fontWeight: 800,
+    border: '2px solid var(--color-border)',
     textDecoration: 'none',
-    boxShadow: variant === 'primary' ? '0 4px 14px 0 rgba(200, 64, 26, 0.3)' : 'none',
+    boxShadow: '4px 4px 0px var(--color-border)',
   };
 
   const variantStyles: React.CSSProperties =
     variant === 'primary'
       ? {
           backgroundColor: 'var(--color-terracotta)',
-          color: 'var(--color-text)',
+          color: '#ffffff', // High contrast text on brand color
         }
       : {
-          backgroundColor: 'transparent',
+          backgroundColor: 'var(--color-bg)',
           color: 'var(--color-text)',
-          border: '1px solid var(--color-border)',
         };
 
   const combinedClassName = cn('btn-shimmer', className);
@@ -58,8 +56,8 @@ export default function AnimatedButton({
         <motion.a
           className={combinedClassName}
           style={{ ...baseStyles, ...variantStyles }}
-          whileHover={{ scale: 1.02, boxShadow: variant === 'primary' ? '0 6px 20px rgba(200, 64, 26, 0.5)' : '0 4px 14px rgba(255,255,255,0.1)' }}
-          whileTap={{ scale: 0.96 }}
+          whileHover={{ x: -2, y: -2, boxShadow: '6px 6px 0px var(--color-border)' }}
+          whileTap={{ x: 4, y: 4, boxShadow: '0px 0px 0px var(--color-border)' }}
         >
           {children}
         </motion.a>
@@ -71,8 +69,8 @@ export default function AnimatedButton({
     <motion.button
       className={combinedClassName}
       style={{ ...baseStyles, ...variantStyles }}
-      whileHover={{ scale: 1.02, boxShadow: variant === 'primary' ? '0 6px 20px rgba(200, 64, 26, 0.5)' : '0 4px 14px rgba(255,255,255,0.1)' }}
-      whileTap={{ scale: 0.96 }}
+      whileHover={{ x: -2, y: -2, boxShadow: '6px 6px 0px var(--color-border)' }}
+      whileTap={{ x: 4, y: 4, boxShadow: '0px 0px 0px var(--color-border)' }}
       {...props}
     >
       {children}
