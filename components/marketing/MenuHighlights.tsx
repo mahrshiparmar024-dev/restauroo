@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import SectionEyebrow from '@/components/ui/SectionEyebrow';
-import GradientImage from '@/components/ui/GradientImage';
 import { getPopularDishes } from '@/lib/menuData';
 import { formatPrice, prefersReducedMotion } from '@/lib/utils';
 
@@ -77,14 +77,63 @@ export default function MenuHighlights() {
               }}
               className={`highlight-card ${index === 0 ? 'highlight-card-large' : ''}`}
               style={{
+                position: 'relative',
                 borderRadius: 'var(--radius-lg)',
                 border: '1px solid var(--color-border)',
                 overflow: 'hidden',
-                transition: `all var(--dur-base) var(--ease-out)`,
+                transition: `all 0.4s cubic-bezier(0.16, 1, 0.3, 1)`,
                 cursor: 'pointer',
                 backgroundColor: 'var(--color-bg)',
               }}
+              whileHover={{ 
+                y: -8, 
+                boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
+                borderColor: 'var(--color-border-gold)',
+              }}
             >
+              {/* Social Engineering Badges */}
+              {index === 0 && (
+                <div style={{
+                  position: 'absolute',
+                  top: 'var(--space-4)',
+                  right: 'var(--space-4)',
+                  zIndex: 10,
+                  background: 'rgba(232, 160, 32, 0.95)',
+                  color: '#1a100a',
+                  padding: '4px 12px',
+                  borderRadius: '100px',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '10px',
+                  fontWeight: 700,
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  boxShadow: '0 4px 12px rgba(232, 160, 32, 0.3)',
+                  backdropFilter: 'blur(4px)',
+                }}>
+                  🔥 Trending Now
+                </div>
+              )}
+              {index === 2 && (
+                <div style={{
+                  position: 'absolute',
+                  top: 'var(--space-4)',
+                  right: 'var(--space-4)',
+                  zIndex: 10,
+                  background: 'rgba(200, 64, 26, 0.95)',
+                  color: 'white',
+                  padding: '4px 12px',
+                  borderRadius: '100px',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '10px',
+                  fontWeight: 700,
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  boxShadow: '0 4px 12px rgba(200, 64, 26, 0.3)',
+                  backdropFilter: 'blur(4px)',
+                }}>
+                  Almost Sold Out
+                </div>
+              )}
               <Link
                 href="/menu"
                 style={{
@@ -92,11 +141,23 @@ export default function MenuHighlights() {
                   textDecoration: 'none',
                 }}
               >
-                <GradientImage
-                  gradient={dish.gradientStyle}
-                  alt={`${dish.name} — ${dish.nameEn}`}
-                  aspectRatio={index === 0 ? '16/10' : '4/3'}
-                />
+                <div
+                  className="img-wrapper"
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    aspectRatio: index === 0 ? '16/10' : '4/3',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <Image
+                    src={`/images/${dish.id}.png`}
+                    alt={`${dish.name} — ${dish.nameEn}`}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
                 <div
                   style={{
                     padding: 'var(--space-6)',
@@ -182,10 +243,11 @@ export default function MenuHighlights() {
           grid-template-columns: 1fr;
           gap: var(--space-6);
         }
-        .highlight-card:hover {
-          transform: translateY(-4px);
-          border-color: var(--color-border-gold) !important;
-          box-shadow: var(--shadow-card);
+        .highlight-card .img-wrapper img {
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .highlight-card:hover .img-wrapper img {
+          transform: scale(1.05) !important;
         }
         @media (min-width: 768px) {
           .highlights-grid {

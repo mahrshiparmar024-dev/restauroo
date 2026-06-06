@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import type { ReactNode, ButtonHTMLAttributes } from 'react';
 
@@ -26,13 +27,15 @@ export default function AnimatedButton({
     borderRadius: 'var(--radius-full)',
     display: 'inline-flex',
     alignItems: 'center',
+    justifyContent: 'center',
     gap: 'var(--space-2)',
     cursor: 'pointer',
-    transition: `all var(--dur-base) var(--ease-out)`,
+    transition: `background-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out)`,
     textTransform: 'uppercase' as const,
-    fontWeight: 500,
+    fontWeight: 600,
     border: 'none',
     textDecoration: 'none',
+    boxShadow: variant === 'primary' ? '0 4px 14px 0 rgba(200, 64, 26, 0.3)' : 'none',
   };
 
   const variantStyles: React.CSSProperties =
@@ -51,23 +54,28 @@ export default function AnimatedButton({
 
   if (href) {
     return (
-      <Link
-        href={href}
-        className={combinedClassName}
-        style={{ ...baseStyles, ...variantStyles }}
-      >
-        {children}
+      <Link href={href} passHref legacyBehavior>
+        <motion.a
+          className={combinedClassName}
+          style={{ ...baseStyles, ...variantStyles }}
+          whileHover={{ scale: 1.02, boxShadow: variant === 'primary' ? '0 6px 20px rgba(200, 64, 26, 0.5)' : '0 4px 14px rgba(255,255,255,0.1)' }}
+          whileTap={{ scale: 0.96 }}
+        >
+          {children}
+        </motion.a>
       </Link>
     );
   }
 
   return (
-    <button
+    <motion.button
       className={combinedClassName}
       style={{ ...baseStyles, ...variantStyles }}
+      whileHover={{ scale: 1.02, boxShadow: variant === 'primary' ? '0 6px 20px rgba(200, 64, 26, 0.5)' : '0 4px 14px rgba(255,255,255,0.1)' }}
+      whileTap={{ scale: 0.96 }}
       {...props}
     >
       {children}
-    </button>
+    </motion.button>
   );
 }

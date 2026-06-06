@@ -170,6 +170,57 @@ export default function HeroSection() {
               Reserve a Table
             </AnimatedButton>
           </motion.div>
+
+          {/* Social Proof Trust Badge */}
+          <motion.div
+            initial={noMotion ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.4,
+              delay: 1.0,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            style={{
+              marginTop: 'var(--space-8)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 'var(--space-3)',
+            }}
+          >
+            {/* Avatar Group */}
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              {[1, 2, 3].map((i) => (
+                <div
+                  key={i}
+                  style={{
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '50%',
+                    border: '2px solid var(--color-bg)',
+                    marginLeft: i > 1 ? '-12px' : '0',
+                    background: `linear-gradient(135deg, var(--color-gold) 0%, var(--color-border-gold) 100%)`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#1a100a',
+                    fontSize: '10px',
+                    fontWeight: 800,
+                  }}
+                >
+                  {i === 3 ? '5k+' : '★'}
+                </div>
+              ))}
+            </div>
+            <span
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: 'var(--text-sm)',
+                color: 'var(--color-text-muted)',
+              }}
+            >
+              Over <strong>5,000+</strong> happy customers in Kitchener
+            </span>
+          </motion.div>
         </div>
 
         {/* Right side — decorative gradient image */}
@@ -196,41 +247,7 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={noMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        style={{
-          position: 'absolute',
-          bottom: 'var(--space-8)',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 'var(--space-2)',
-        }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '10px',
-            color: 'var(--color-text-faint)',
-            letterSpacing: '0.15em',
-            textTransform: 'uppercase',
-          }}
-        >
-          Scroll
-        </span>
-        <div
-          style={{
-            width: '1px',
-            height: '32px',
-            backgroundColor: 'var(--color-text-faint)',
-          }}
-        />
-      </motion.div>
+
 
       <style jsx global>{`
         @media (max-width: 768px) {

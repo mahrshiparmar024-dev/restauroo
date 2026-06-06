@@ -10,7 +10,6 @@ interface FormData {
   name: string;
   phone: string;
   email: string;
-  pickupTime: string;
   specialInstructions: string;
 }
 
@@ -18,21 +17,9 @@ interface FormErrors {
   name?: string;
   phone?: string;
   email?: string;
-  pickupTime?: string;
 }
 
-const PICKUP_OPTIONS = [
-  'Dine In',
-  '5:00 PM',
-  '5:30 PM',
-  '6:00 PM',
-  '6:30 PM',
-  '7:00 PM',
-  '7:30 PM',
-  '8:00 PM',
-  '8:30 PM',
-  '9:00 PM',
-];
+
 
 export default function OrderSummary() {
   const { state, dispatch, subtotal, tax, total } = useOrder();
@@ -45,7 +32,6 @@ export default function OrderSummary() {
     name: '',
     phone: '',
     email: '',
-    pickupTime: '',
     specialInstructions: '',
   });
   const [promoInput, setPromoInput] = useState('');
@@ -65,7 +51,6 @@ export default function OrderSummary() {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
       errs.email = 'Please enter a valid email address';
     }
-    if (!formData.pickupTime) errs.pickupTime = 'Please select a time';
     return errs;
   };
 
@@ -85,7 +70,6 @@ export default function OrderSummary() {
       if (!newData.name.trim()) errs.name = 'Name is required';
       if (!newData.phone.trim()) errs.phone = 'Phone number is required';
       if (!newData.email.trim()) errs.email = 'Email is required';
-      if (!newData.pickupTime) errs.pickupTime = 'Please select a time';
       setErrors(errs);
     }
   };
@@ -94,7 +78,7 @@ export default function OrderSummary() {
     e.preventDefault();
     const validationErrors = validate();
     setErrors(validationErrors);
-    setTouched({ name: true, phone: true, email: true, pickupTime: true });
+    setTouched({ name: true, phone: true, email: true });
 
     if (Object.keys(validationErrors).length === 0) {
       const orderNumber = generateOrderNumber(Date.now());
@@ -297,58 +281,106 @@ export default function OrderSummary() {
         </div>
       </div>
 
-      {/* Promo Code Input */}
+      {/* Promo Code Input & Drawer */}
       {!state.discountCode && (
-        <div
-          style={{
-            padding: 'var(--space-4)',
-            borderRadius: 'var(--radius-lg)',
-            border: '1px solid var(--color-border)',
-            backgroundColor: 'var(--color-surface)',
-            marginBottom: 'var(--space-6)',
-            display: 'flex',
-            gap: 'var(--space-2)',
-          }}
-        >
-          <input
-            type="text"
-            value={promoInput}
-            onChange={(e) => setPromoInput(e.target.value)}
-            placeholder="Promo code (e.g. WELCOME10)"
+        <div style={{ marginBottom: 'var(--space-6)' }}>
+          <div
             style={{
-              flex: 1,
-              padding: 'var(--space-3) var(--space-4)',
-              borderRadius: 'var(--radius-md)',
+              padding: 'var(--space-4)',
+              borderRadius: 'var(--radius-lg)',
               border: '1px solid var(--color-border)',
-              backgroundColor: 'var(--color-bg)',
-              color: 'var(--color-text)',
-              fontFamily: 'var(--font-body)',
-              fontSize: 'var(--text-sm)',
-              outline: 'none',
-              textTransform: 'uppercase',
-            }}
-          />
-          <button
-            type="button"
-            onClick={handleApplyPromo}
-            disabled={!promoInput.trim() || state.items.length === 0}
-            style={{
-              padding: '0 var(--space-4)',
-              borderRadius: 'var(--radius-md)',
-              border: '1px solid var(--color-border)',
-              backgroundColor: 'var(--color-surface-2)',
-              color: 'var(--color-text)',
-              fontFamily: 'var(--font-mono)',
-              fontSize: 'var(--text-xs)',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              cursor: (!promoInput.trim() || state.items.length === 0) ? 'not-allowed' : 'pointer',
-              opacity: (!promoInput.trim() || state.items.length === 0) ? 0.5 : 1,
-              transition: 'all var(--dur-fast) var(--ease-out)',
+              backgroundColor: 'var(--color-surface)',
+              marginBottom: 'var(--space-2)',
+              display: 'flex',
+              gap: 'var(--space-2)',
             }}
           >
-            Apply
-          </button>
+            <input
+              type="text"
+              value={promoInput}
+              onChange={(e) => setPromoInput(e.target.value)}
+              placeholder="Promo code (e.g. WELCOME10)"
+              style={{
+                flex: 1,
+                padding: 'var(--space-3) var(--space-4)',
+                borderRadius: 'var(--radius-md)',
+                border: '1px solid var(--color-border)',
+                backgroundColor: 'var(--color-bg)',
+                color: 'var(--color-text)',
+                fontFamily: 'var(--font-body)',
+                fontSize: 'var(--text-sm)',
+                outline: 'none',
+                textTransform: 'uppercase',
+              }}
+            />
+            <button
+              type="button"
+              onClick={handleApplyPromo}
+              disabled={!promoInput.trim() || state.items.length === 0}
+              style={{
+                padding: '0 var(--space-4)',
+                borderRadius: 'var(--radius-md)',
+                border: '1px solid var(--color-border)',
+                backgroundColor: 'var(--color-surface-2)',
+                color: 'var(--color-text)',
+                fontFamily: 'var(--font-mono)',
+                fontSize: 'var(--text-xs)',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                cursor: (!promoInput.trim() || state.items.length === 0) ? 'not-allowed' : 'pointer',
+                opacity: (!promoInput.trim() || state.items.length === 0) ? 0.5 : 1,
+                transition: 'all var(--dur-fast) var(--ease-out)',
+              }}
+            >
+              Apply
+            </button>
+          </div>
+          
+          {/* Social Engineering: Available Coupons */}
+          {state.items.length > 0 && (
+            <div style={{ display: 'flex', gap: 'var(--space-2)', overflowX: 'auto', paddingBottom: 'var(--space-2)' }}>
+              <button
+                type="button"
+                onClick={() => { setPromoInput('WELCOME10'); }}
+                style={{
+                  background: 'rgba(232, 160, 32, 0.1)',
+                  border: '1px dashed var(--color-gold)',
+                  color: 'var(--color-gold)',
+                  padding: 'var(--space-2) var(--space-3)',
+                  borderRadius: 'var(--radius-md)',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 'var(--text-xs)',
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  transition: 'background var(--dur-fast) var(--ease-out)',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(232, 160, 32, 0.2)'}
+                onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(232, 160, 32, 0.1)'}
+              >
+                10% OFF (WELCOME10)
+              </button>
+              <button
+                type="button"
+                onClick={() => { setPromoInput('KEBAB20'); }}
+                style={{
+                  background: 'rgba(232, 160, 32, 0.1)',
+                  border: '1px dashed var(--color-gold)',
+                  color: 'var(--color-gold)',
+                  padding: 'var(--space-2) var(--space-3)',
+                  borderRadius: 'var(--radius-md)',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 'var(--text-xs)',
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  transition: 'background var(--dur-fast) var(--ease-out)',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(232, 160, 32, 0.2)'}
+                onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(232, 160, 32, 0.1)'}
+              >
+                20% OFF (KEBAB20)
+              </button>
+            </div>
+          )}
         </div>
       )}
 
@@ -539,57 +571,7 @@ export default function OrderSummary() {
             )}
           </div>
 
-          {/* Pickup Time */}
-          <div style={{ marginBottom: 'var(--space-4)' }}>
-            <label
-              htmlFor="checkout-pickup"
-              style={{
-                display: 'block',
-                fontFamily: 'var(--font-mono)',
-                fontSize: 'var(--text-xs)',
-                color: 'var(--color-text-muted)',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                marginBottom: 'var(--space-2)',
-              }}
-            >
-              Pickup / Dine In
-            </label>
-            <select
-              id="checkout-pickup"
-              value={formData.pickupTime}
-              onChange={(e) => handleChange('pickupTime', e.target.value)}
-              onBlur={() => handleBlur('pickupTime')}
-              style={{
-                ...inputStyle('pickupTime'),
-                cursor: 'pointer',
-                appearance: 'none',
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239a8f7e' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'right 12px center',
-                paddingRight: 'var(--space-8)',
-              }}
-            >
-              <option value="">Select time…</option>
-              {PICKUP_OPTIONS.map((opt) => (
-                <option key={opt} value={opt}>
-                  {opt}
-                </option>
-              ))}
-            </select>
-            {isFieldInvalid('pickupTime') && (
-              <p
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: 'var(--text-xs)',
-                  color: 'var(--color-error)',
-                  marginTop: 'var(--space-1)',
-                }}
-              >
-                {errors.pickupTime}
-              </p>
-            )}
-          </div>
+
 
           {/* Special Instructions */}
           <div style={{ marginBottom: 'var(--space-6)' }}>
