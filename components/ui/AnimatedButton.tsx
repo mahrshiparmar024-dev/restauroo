@@ -5,7 +5,9 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import type { ReactNode, ButtonHTMLAttributes } from 'react';
 
-interface AnimatedButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type BaseButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onDrag' | 'onDragStart' | 'onDragEnd' | 'onAnimationStart'>;
+
+interface AnimatedButtonProps extends BaseButtonProps {
   variant?: 'primary' | 'ghost';
   children: ReactNode;
   href?: string;
